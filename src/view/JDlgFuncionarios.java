@@ -4,16 +4,9 @@
  */
 package view;
 
-import bean.Funcionarios;
-import dao.FuncionariosDao;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
-import javax.swing.text.DefaultFormatterFactory;
-import javax.swing.text.MaskFormatter;
+import tools.Util;
+
+
 
 /**
  *
@@ -21,80 +14,17 @@ import javax.swing.text.MaskFormatter;
  */
 public class JDlgFuncionarios extends javax.swing.JDialog {
 
-    boolean incluir = false;
-    private MaskFormatter mascaraCpf, mascaraDataAd,mascaraTel;
-
     /**
      * Creates new form JDlgFuncionarios
      */
     public JDlgFuncionarios(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
-        setTitle("Cadastro de Funcionarios");
+        setTitle("Cadastro de Clientes");
         setLocationRelativeTo(null);
-        habilitar(false);
-        try {
-            mascaraCpf = new MaskFormatter("###.###.###-##");
-            mascaraDataAd = new MaskFormatter("##/##/####");
-            mascaraTel = new MaskFormatter("(##) #####-####");
-            jFmtCpf.setFormatterFactory(new DefaultFormatterFactory(mascaraCpf));
-            jFmtTel.setFormatterFactory(new DefaultFormatterFactory(mascaraTel));
-            jFmtAdmissao.setFormatterFactory(new DefaultFormatterFactory(mascaraDataAd));
-        } catch (ParseException ex) {
-            Logger.getLogger(JDlgUsuarios.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+        Util.habilitar(false, jTxtNome, jTxtCodigo, jFmtTel, jFmtCpf,jFmtAdmissao,
+                jTxtEmail, jTxtCargo, jTxtSalario,jChbAtivo, jBtnConfirmar, jBtnCancelar);
 
-    public void habilitar(boolean valor) {
-        jBtnConfirmar.setEnabled(valor);
-        jBtnCancelar.setEnabled(valor);
-        jTxtCodigo.setEnabled(valor);
-        jTxtNome.setEnabled(valor);
-        jFmtCpf.setEnabled(valor);
-        jTxtCargo.setEnabled(valor);
-        jFmtTel.setEnabled(valor);
-        jTxtEmail.setEnabled(valor);
-        jTxtSalario.setEnabled(valor);
-        jFmtAdmissao.setEnabled(valor);
-        jChbAtivo.setEnabled(valor);
-
-        jBtnIncluir.setEnabled(!valor);
-        jBtnAlterar.setEnabled(!valor);
-        jBtnExcluir.setEnabled(!valor);
-        jBtnPesquisar.setEnabled(!valor);
-    }
-
-    private void limpar() {
-        jTxtCodigo.setText("");
-        jTxtNome.setText("");
-        jFmtCpf.setText("");
-        jTxtCargo.setText("");
-        jFmtTel.setText("");
-        jTxtEmail.setText("");
-        jTxtSalario.setText("");
-        jFmtAdmissao.setText("");
-        jChbAtivo.setSelected(false);
-    }
-
-    public void beanView(Funcionarios funcionarios) {
-        String codigo = String.valueOf(funcionarios.getIdFuncionario());
-        jTxtCodigo.setText(codigo);
-        jTxtNome.setText(funcionarios.getNome());
-        jTxtCargo.setText(funcionarios.getCargo());
-        jFmtCpf.setText(funcionarios.getCpf());
-        jFmtTel.setText(funcionarios.getTelefone());
-        jTxtEmail.setText(funcionarios.getEmail());
-        jTxtSalario.setText(String.valueOf(funcionarios.getSalario()));
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-        String dataAdd = formato.format(funcionarios.getDataAdmissao());
-        jFmtAdmissao.setText(dataAdd);
-        if (funcionarios.getAtivo().equals("S")) {
-            jChbAtivo.setSelected(true);
-        } else {
-            jChbAtivo.setSelected(false);
-        }
     }
 
     /**
