@@ -3,8 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package view;
-import bean.Produto;
-import dao.ProdutoDao;
 import java.util.List;
 
 /**
@@ -12,7 +10,6 @@ import java.util.List;
  * @author u07884727129
  */
 public class JDlgProdutoPesquisar extends javax.swing.JDialog {
- ControllerProdutos controllerProdutos;
     JDlgProduto jDlgProduto;
     /**
      * Creates new form JDlgProdutoPesquisar
@@ -22,11 +19,6 @@ public class JDlgProdutoPesquisar extends javax.swing.JDialog {
         initComponents();
         setTitle("Pesquisar Produtos");
         setLocationRelativeTo(null);
-        controllerProdutos = new ControllerProdutos();
-        ProdutoDao produtosDao = new ProdutoDao();
-        List lista = (List) produtosDao.listAll();
-        controllerProdutos.setList(lista);
-        jTable.setModel(controllerProdutos);
     }
 
     public void setTelaPai(JDlgProduto jDlgProduto) {
@@ -94,8 +86,6 @@ public class JDlgProdutoPesquisar extends javax.swing.JDialog {
     private void jBntOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntOKActionPerformed
         // TODO add your handling code here:
         int linSel = jTable.getSelectedRow();
-        Produto produto = (Produto) controllerProdutos.getBean(linSel);
-        jDlgProduto.beanView(produto);
         setVisible(false);
     }//GEN-LAST:event_jBntOKActionPerformed
 

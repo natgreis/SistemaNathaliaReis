@@ -4,17 +4,7 @@
  */
 package view;
 
-import bean.Produto;
-import bean.Produto;
-import dao.ProdutoDao;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
-import javax.swing.text.DefaultFormatterFactory;
-import javax.swing.text.MaskFormatter;
+import tools.Util;
 
 /**
  *
@@ -32,53 +22,10 @@ public class JDlgProduto extends javax.swing.JDialog {
         initComponents();
         setTitle("Cadastro de Produtos");
         setLocationRelativeTo(null);
-        habilitar(false);
+        Util.habilitar(false, jTxtNome, jTxtCodigo, jTxtDescricao, jTxtDescricao,jFrmtDataCad,
+                jTxtTamanho, jTxtCor, jTxtCategoria, jTxtPreco, jBtnConfirmar, jBtnCancelar);
 
     }
-
-    public void habilitar(boolean valor) {
-        jBtnConfirmar.setEnabled(valor);
-        jBtnCancelar.setEnabled(valor);
-        jTxtCodigo.setEnabled(valor);
-        jTxtNome.setEnabled(valor);
-        jTxtDescricao.setEnabled(valor);
-        jTxtTamanho.setEnabled(valor);
-        jTxtCor.setEnabled(valor);
-        jTxtPreco.setEnabled(valor);
-        jTxtCategoria.setEnabled(valor);
-        jFrmtDataCad.setEnabled(valor);
-
-        jBtnIncluir.setEnabled(!valor);
-        jBtnAlterar.setEnabled(!valor);
-        jBtnExcluir.setEnabled(!valor);
-        jBtnPesquisar.setEnabled(!valor);
-    }
-
-    private void limpar() {
-        jTxtCodigo.setText("");
-        jTxtNome.setText("");
-        jTxtDescricao.setText("");
-        jTxtTamanho.setText("");
-        jTxtCor.setText("");
-        jTxtPreco.setText("");
-        jTxtCategoria.setText("");
-        jFrmtDataCad.setText("");
-    }
-
-    public void beanView(Produto produto) {
-        String codigo = String.valueOf(produto.getIdProduto());
-        jTxtCodigo.setText(codigo);
-        jTxtNome.setText(produto.getNome());
-        jTxtDescricao.setText(produto.getDescricao());
-        jTxtTamanho.setText(produto.getTamanho());
-        jTxtCor.setText(produto.getCor());
-        jTxtPreco.setText(String.valueOf(produto.getPreco()));
-        jTxtCategoria.setText(produto.getCategoria());
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-        String dataCad = formato.format(produto.getDataCadastro());
-        jFrmtDataCad.setText(dataCad);
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -130,7 +77,7 @@ public class JDlgProduto extends javax.swing.JDialog {
 
         jLabel9.setText("Data de cadastro");
 
-        jBtnIncluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/incluir.png"))); // NOI18N
+        jBtnIncluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/incluir.png"))); // NOI18N
         jBtnIncluir.setText("Incluir");
         jBtnIncluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -138,7 +85,7 @@ public class JDlgProduto extends javax.swing.JDialog {
             }
         });
 
-        jBtnAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/alterar.png"))); // NOI18N
+        jBtnAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/alterar.png"))); // NOI18N
         jBtnAlterar.setText("Alterar");
         jBtnAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -146,7 +93,7 @@ public class JDlgProduto extends javax.swing.JDialog {
             }
         });
 
-        jBtnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Excluir.png"))); // NOI18N
+        jBtnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Excluir.png"))); // NOI18N
         jBtnExcluir.setText("Excluir");
         jBtnExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -154,7 +101,7 @@ public class JDlgProduto extends javax.swing.JDialog {
             }
         });
 
-        jBtnConfirmar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/gravar.png"))); // NOI18N
+        jBtnConfirmar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gravar.png"))); // NOI18N
         jBtnConfirmar.setText("Confirmar");
         jBtnConfirmar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -162,7 +109,7 @@ public class JDlgProduto extends javax.swing.JDialog {
             }
         });
 
-        jBtnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/cancelar.png"))); // NOI18N
+        jBtnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar.png"))); // NOI18N
         jBtnCancelar.setText("Cancelar");
         jBtnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -170,7 +117,7 @@ public class JDlgProduto extends javax.swing.JDialog {
             }
         });
 
-        jBtnPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/pesquisar.png"))); // NOI18N
+        jBtnPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/pesquisar.png"))); // NOI18N
         jBtnPesquisar.setText("Pesquisar");
         jBtnPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -227,7 +174,7 @@ public class JDlgProduto extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jBtnPesquisar))
                             .addComponent(jTxtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 1, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jFrmtDataCad, javax.swing.GroupLayout.Alignment.LEADING)
@@ -291,100 +238,38 @@ public class JDlgProduto extends javax.swing.JDialog {
 
     private void jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirActionPerformed
         // TODO add your handling code here:
-        habilitar(true);
-        limpar();
-        incluir = true;
-        jTxtCodigo.grabFocus();
+        Util.habilitar(true, jTxtNome, jTxtCodigo, jTxtDescricao, jTxtDescricao,jFrmtDataCad,
+                jTxtTamanho, jTxtCor, jTxtCategoria, jTxtPreco, jBtnConfirmar, jBtnCancelar);
+        Util.habilitar(false, jBtnAlterar, jBtnExcluir, jBtnIncluir, jBtnPesquisar);
+        Util.limpar(jTxtCodigo, jTxtNome);
+        Util.mensagem("nao implementado");
 
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
         // TODO add your handling code here:
-        jTxtCodigo.setEnabled(false);
-        if (jTxtCodigo.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Pesquise antes de alterar");
-            return;
-        }
-        habilitar(true);
-        incluir = false;
-        jTxtCodigo.setEnabled(false);
-        jTxtNome.grabFocus();
+         Util.habilitar(true, jTxtNome, jTxtCodigo, jTxtDescricao, jTxtDescricao,jFrmtDataCad,
+                jTxtTamanho, jTxtCor, jTxtCategoria, jTxtPreco, jBtnConfirmar, jBtnCancelar);
+        Util.habilitar(false, jBtnAlterar, jBtnExcluir, jBtnIncluir, jBtnPesquisar);
+        Util.limpar(jTxtCodigo, jTxtNome);
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
-        Produto produto = new Produto();
-
-        int cod = Integer.parseInt(jTxtCodigo.getText());
-        produto.setIdProduto(cod);
-        produto.setNome(jTxtNome.getText());
-        produto.setDescricao(jTxtDescricao.getText());
-        produto.setTamanho(jTxtTamanho.getText());
-        produto.setCor(jTxtCor.getText());
-
-        produto.setPreco(Integer.parseInt(jTxtPreco.getText()));
-        produto.setCategoria(jTxtCategoria.getText());
-
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-        try {
-            Date dataCad = formato.parse(jFrmtDataCad.getText());
-            produto.setDataCadastro(dataCad);
-        } catch (ParseException ex) {
-            Logger.getLogger(JDlgProduto.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        ProdutoDao produtoDao = new ProdutoDao();
-        if (incluir == true) {
-            produtoDao.insert(produto);
-        } else {
-            produtoDao.update(produto);
-        }
-
-        habilitar(false);
-        limpar();
-
+        int cod = Util.strToInt(jTxtCodigo.getText());
 
     }//GEN-LAST:event_jBtnConfirmarActionPerformed
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
         // TODO add your handling code here:
-        habilitar(false);
-        limpar();
+         Util.habilitar(false, jTxtNome, jTxtCodigo, jTxtDescricao, jTxtDescricao,jFrmtDataCad,
+                jTxtTamanho, jTxtCor, jTxtCategoria, jTxtPreco, jBtnConfirmar, jBtnCancelar);
+        Util.habilitar(true, jBtnAlterar, jBtnExcluir, jBtnIncluir, jBtnPesquisar);
+        Util.limpar(jTxtCodigo, jTxtNome);
     }//GEN-LAST:event_jBtnCancelarActionPerformed
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
         // TODO add your handling code here:  
-        jTxtCodigo.setEnabled(false);
-        if (jTxtCodigo.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Pesquise antes de excluir");
-            return;
-        } else {
-            int resp = JOptionPane.showConfirmDialog(null, "Deseja excluir?");
-            if (resp == JOptionPane.YES_OPTION) {
-                Produto produto = new Produto();
-                int cod = Integer.parseInt(jTxtCodigo.getText());
-                produto.setIdProduto(cod);
-                produto.setNome(jTxtNome.getText());
-                produto.setDescricao(jTxtDescricao.getText());
-                produto.setTamanho(jTxtTamanho.getText());
-                produto.setCor(jTxtCor.getText());
-                jTxtPreco.setText(String.valueOf(produto.getPreco()));
-                produto.setPreco(Integer.parseInt(jTxtPreco.getText()));
-                produto.setCategoria(jTxtCategoria.getText());
-                SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-                try {
-                    Date dataCad = formato.parse(jFrmtDataCad.getText());
-                    produto.setDataCadastro(dataCad);
-                } catch (ParseException ex) {
-                    Logger.getLogger(JDlgProduto.class.getName()).log(Level.SEVERE, null, ex);
-                }
-
-                ProdutoDao produtoDao = new ProdutoDao();
-                produtoDao.delete(produto);
-                limpar();
-            }
-        }
-        limpar();
-
+        Util.pergunta("Deseja Excluir?");
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
     private void jBtnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPesquisarActionPerformed
