@@ -12,8 +12,6 @@ import tools.Util;
  */
 public class JDlgProduto extends javax.swing.JDialog {
 
-    boolean incluir = false;
-
     /**
      * Creates new form JDlgProduto
      */
