@@ -3,9 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package view;
+
 import tools.Util;
-
-
 
 /**
  *
@@ -22,9 +21,6 @@ public class JDlgUsuarios extends javax.swing.JDialog {
                 jPwdSenha, jCboNivel, jChbAtivo, jBtnConfirmar, jBtnCancelar);
 
     }
-
-
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -229,7 +225,7 @@ public class JDlgUsuarios extends javax.swing.JDialog {
 
     private void jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirActionPerformed
         // TODO add your handling code here:
-       Util.habilitar(true, jTxtNome, jTxtCodigo, jTxtApelido, jFmtCpf, jFmtDataNascimento,
+        Util.habilitar(true, jTxtNome, jTxtCodigo, jTxtApelido, jFmtCpf, jFmtDataNascimento,
                 jPwdSenha, jCboNivel, jChbAtivo, jBtnConfirmar, jBtnCancelar);
         Util.habilitar(false, jBtnAlterar, jBtnExcluir, jBtnIncluir, jBtnPesquisar);
         Util.limpar(jTxtCodigo, jTxtApelido, jTxtNome);
@@ -238,7 +234,7 @@ public class JDlgUsuarios extends javax.swing.JDialog {
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
         // TODO add your handling code here:
-       int cod = Util.strToInt(jTxtCodigo.getText());
+        int cod = Util.strToInt(jTxtCodigo.getText());
     }//GEN-LAST:event_jBtnConfirmarActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
@@ -259,7 +255,7 @@ public class JDlgUsuarios extends javax.swing.JDialog {
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
         // TODO add your handling code here:
-       Util.pergunta("Deseja Excluir?");
+        Util.pergunta("Deseja Excluir?");
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
     private void jBtnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPesquisarActionPerformed

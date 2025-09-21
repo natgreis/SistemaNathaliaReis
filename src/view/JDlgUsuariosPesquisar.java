@@ -4,8 +4,6 @@
  */
 package view;
 
-
-import java.util.List;
 /**
  *
  * @author macbook
@@ -13,6 +11,7 @@ import java.util.List;
 public class JDlgUsuariosPesquisar extends javax.swing.JDialog {
 
     JDlgUsuarios jDlgUsuarios;
+
     /**
      * Creates new form JDlgUsuariosPesquisar
      */
@@ -21,10 +20,10 @@ public class JDlgUsuariosPesquisar extends javax.swing.JDialog {
         initComponents();
         setTitle("Pesquisar Usuario");
         setLocationRelativeTo(null);
-        
+
     }
-    
-    public void setTelaPai(JDlgUsuarios jDlgUsuarios){
+
+    public void setTelaPai(JDlgUsuarios jDlgUsuarios) {
         this.jDlgUsuarios = jDlgUsuarios;
     }
 
@@ -90,7 +89,6 @@ public class JDlgUsuariosPesquisar extends javax.swing.JDialog {
     private void jBntOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntOkActionPerformed
         // TODO add your handling code here:
         int linSel = jTable1.getSelectedRow();
-
 
         setVisible(false);
     }//GEN-LAST:event_jBntOkActionPerformed
