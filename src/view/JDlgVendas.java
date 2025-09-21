@@ -256,7 +256,6 @@ public class JDlgVendas extends javax.swing.JDialog {
                 jTxtPagamento, jTxtObservacoes, jBtnConfirmar, jBtnCancelar);
         Util.habilitar(false, jBtnAlterar, jBtnExcluir, jBtnIncluir, jBtnPesquisar);
         Util.limpar(jTxtCodigo);
-        Util.mensagem("nao implementado");
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
@@ -269,8 +268,6 @@ public class JDlgVendas extends javax.swing.JDialog {
         Util.habilitar(false, jFmtDataVenda, jTxtCodigo, jCboCliente, jCboFuncionario, jTxtTotal,
                 jTxtPagamento, jTxtObservacoes, jBtnConfirmar, jBtnCancelar);
         Util.habilitar(true, jBtnAlterar, jBtnExcluir, jBtnIncluir, jBtnPesquisar);
-        Util.limpar(jTxtCodigo);
-        Util.mensagem("nao implementado");
     }//GEN-LAST:event_jBtnCancelarActionPerformed
 
     private void jBtnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPesquisarActionPerformed

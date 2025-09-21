@@ -20,7 +20,7 @@ public class JDlgFuncionarios extends javax.swing.JDialog {
     public JDlgFuncionarios(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        setTitle("Cadastro de Clientes");
+        setTitle("Cadastro de Funcionarios");
         setLocationRelativeTo(null);
         Util.habilitar(false, jTxtNome, jTxtCodigo, jFmtTel, jFmtCpf,jFmtAdmissao,
                 jTxtEmail, jTxtCargo, jTxtSalario,jChbAtivo, jBtnConfirmar, jBtnCancelar);
@@ -80,7 +80,7 @@ public class JDlgFuncionarios extends javax.swing.JDialog {
 
         jChbAtivo.setText("Ativo");
 
-        jBtnIncluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/incluir.png"))); // NOI18N
+        jBtnIncluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/incluir.png"))); // NOI18N
         jBtnIncluir.setText("Incluir");
         jBtnIncluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -88,7 +88,7 @@ public class JDlgFuncionarios extends javax.swing.JDialog {
             }
         });
 
-        jBtnAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/alterar.png"))); // NOI18N
+        jBtnAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/alterar.png"))); // NOI18N
         jBtnAlterar.setText("Alterar");
         jBtnAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -96,7 +96,7 @@ public class JDlgFuncionarios extends javax.swing.JDialog {
             }
         });
 
-        jBtnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Excluir.png"))); // NOI18N
+        jBtnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Excluir.png"))); // NOI18N
         jBtnExcluir.setText("Excluir");
         jBtnExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -104,7 +104,7 @@ public class JDlgFuncionarios extends javax.swing.JDialog {
             }
         });
 
-        jBtnConfirmar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/gravar.png"))); // NOI18N
+        jBtnConfirmar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gravar.png"))); // NOI18N
         jBtnConfirmar.setText("Confirmar");
         jBtnConfirmar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -112,7 +112,7 @@ public class JDlgFuncionarios extends javax.swing.JDialog {
             }
         });
 
-        jBtnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/cancelar.png"))); // NOI18N
+        jBtnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar.png"))); // NOI18N
         jBtnCancelar.setText("Cancelar");
         jBtnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -120,7 +120,7 @@ public class JDlgFuncionarios extends javax.swing.JDialog {
             }
         });
 
-        jBtnPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/pesquisar.png"))); // NOI18N
+        jBtnPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/pesquisar.png"))); // NOI18N
         jBtnPesquisar.setText("Pesquisar");
         jBtnPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -177,7 +177,7 @@ public class JDlgFuncionarios extends javax.swing.JDialog {
                                 .addComponent(jBtnCancelar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jBtnPesquisar)))
-                        .addGap(0, 34, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -216,7 +216,7 @@ public class JDlgFuncionarios extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jFmtAdmissao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jChbAtivo))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBtnIncluir)
                     .addComponent(jBtnAlterar)
@@ -232,97 +232,36 @@ public class JDlgFuncionarios extends javax.swing.JDialog {
 
     private void jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirActionPerformed
         // TODO add your handling code here:
-        habilitar(true);
-        limpar();
-        incluir = true;
-        jTxtCodigo.grabFocus();
+        Util.habilitar(true, jTxtNome, jTxtCodigo, jFmtTel, jFmtCpf,jFmtAdmissao,
+                jTxtEmail, jTxtCargo, jTxtSalario,jChbAtivo, jBtnConfirmar, jBtnCancelar);
+        Util.habilitar(false, jBtnAlterar, jBtnExcluir, jBtnIncluir, jBtnPesquisar);
+        Util.limpar(jTxtCodigo);
+        Util.mensagem("nao implementado");
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
         // TODO add your handling code here:
-        jTxtCodigo.setEnabled(false);
-        if (jTxtCodigo.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Pesquise antes de alterar");
-            return;
-        }
-        habilitar(true);
-        incluir = false;
-        jTxtCodigo.setEnabled(false);
-        jTxtNome.grabFocus();
+        Util.habilitar(true, jTxtNome, jTxtCodigo, jFmtTel, jFmtCpf,jFmtAdmissao,
+                jTxtEmail, jTxtCargo, jTxtSalario,jChbAtivo, jBtnConfirmar, jBtnCancelar);
+        Util.habilitar(false, jBtnAlterar, jBtnExcluir, jBtnIncluir, jBtnPesquisar);
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
         // TODO add your handling code here:
-        habilitar(false);
-        Funcionarios funcionario = new Funcionarios();
-
-        int cod = Integer.parseInt(jTxtCodigo.getText());
-        funcionario.setIdFuncionario(cod);
-        funcionario.setNome(jTxtNome.getText());
-        funcionario.setCpf(jFmtCpf.getText());
-        funcionario.setCargo(jTxtCargo.getText());
-        funcionario.setTelefone(jFmtTel.getText());
-        funcionario.setEmail(jTxtEmail.getText());
-        funcionario.setSalario(Integer.parseInt(jTxtSalario.getText()));
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-        try {
-            Date dataAdd = formato.parse(jFmtAdmissao.getText());
-            funcionario.setDataAdmissao(dataAdd);
-        } catch (ParseException ex) {
-            Logger.getLogger(JDlgFuncionarios.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        if (jChbAtivo.isSelected()) {
-            funcionario.setAtivo("S");
-        } else {
-            funcionario.setAtivo("N");
-        }
-
-        FuncionariosDao funcionariosDao = new FuncionariosDao();
-        if (incluir == true) {
-            funcionariosDao.insert(funcionario);
-        } else {
-            funcionariosDao.update(funcionario);
-        }
-        habilitar(false);
+          int cod = Util.strToInt(jTxtCodigo.getText());
 
     }//GEN-LAST:event_jBtnConfirmarActionPerformed
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
         // TODO add your handling code here:
-        habilitar(false);
-        limpar();
+        Util.habilitar(false, jTxtNome, jTxtCodigo, jFmtTel, jFmtCpf,jFmtAdmissao,
+                jTxtEmail, jTxtCargo, jTxtSalario,jChbAtivo, jBtnConfirmar, jBtnCancelar);
+        Util.habilitar(true, jBtnAlterar, jBtnExcluir, jBtnIncluir, jBtnPesquisar);
     }//GEN-LAST:event_jBtnCancelarActionPerformed
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
-        // TODO add your handling code here:               
-        jTxtCodigo.setEnabled(false);
-        if (jTxtCodigo.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Pesquise antes de excluir");
-            return;
-        } else {
-        int resp = JOptionPane.showConfirmDialog(null, "Deseja excluir?");
-        if (resp == JOptionPane.YES_OPTION) {
-            Funcionarios funcionario = new Funcionarios();
-            int cod = Integer.parseInt(jTxtCodigo.getText());
-            funcionario.setIdFuncionario(cod);
-            funcionario.setNome(jTxtNome.getText());
-            funcionario.setCpf(jFmtCpf.getText());
-            funcionario.setCargo(jTxtCargo.getText());
-            funcionario.setTelefone(jFmtTel.getText());
-            funcionario.setEmail(jTxtEmail.getText());
-            funcionario.setSalario(Integer.parseInt(jTxtSalario.getText()));
-            funcionario.setDataAdmissao(null);
-            if (jChbAtivo.isSelected() == true) {
-                funcionario.setAtivo("S");
-            } else {
-                funcionario.setAtivo("N");
-            }
-
-            FuncionariosDao dao = new FuncionariosDao();
-            dao.delete(funcionario);
-            limpar();
-        }
-        }
+        // TODO add your handling code here:  
+       Util.pergunta("Deseja Excluir?"); 
 
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 

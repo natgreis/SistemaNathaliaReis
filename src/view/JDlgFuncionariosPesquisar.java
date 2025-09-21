@@ -3,9 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package view;
-
-import bean.Funcionarios;
-import dao.FuncionariosDao;
 import java.util.List;
 
 /**
@@ -13,7 +10,6 @@ import java.util.List;
  * @author u07884727129
  */
 public class JDlgFuncionariosPesquisar extends javax.swing.JDialog {
-    ControllerFuncionarios controllerFuncionarios;
     JDlgFuncionarios jDlgFuncionarios;
     /**
      * Creates new form JDlgFuncionariosPesquisar
@@ -24,11 +20,6 @@ public class JDlgFuncionariosPesquisar extends javax.swing.JDialog {
         setTitle("Pesquisar Funcionario");
         setLocationRelativeTo(null);
         
-        controllerFuncionarios = new ControllerFuncionarios();
-        FuncionariosDao funcionariosDao = new FuncionariosDao();
-        List lista = (List) funcionariosDao.listAll();
-        controllerFuncionarios.setList(lista);
-        jTable.setModel(controllerFuncionarios);
     }
     
     public void setTelaPai(JDlgFuncionarios jDlgFuncionarios){
@@ -96,8 +87,6 @@ public class JDlgFuncionariosPesquisar extends javax.swing.JDialog {
     private void jBntOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntOkActionPerformed
         // TODO add your handling code here:
         int linSel = jTable.getSelectedRow();
-        Funcionarios funcionarios = (Funcionarios) controllerFuncionarios.getBean(linSel);
-        jDlgFuncionarios.beanView(funcionarios);
         setVisible(false);
     }//GEN-LAST:event_jBntOkActionPerformed
 

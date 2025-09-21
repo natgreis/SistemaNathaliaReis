@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package view;
+
 import java.util.List;
 
 /**
@@ -10,7 +11,9 @@ import java.util.List;
  * @author u07884727129
  */
 public class JDlgVendasPesquisar extends javax.swing.JDialog {
+
     JDlgVendas jDlgVendas;
+
     /**
      * Creates new form JDlgVendasPesquisar
      */
@@ -19,10 +22,11 @@ public class JDlgVendasPesquisar extends javax.swing.JDialog {
         initComponents();
         setTitle("Pesquisar vendas");
         setLocationRelativeTo(null);
-        
+
     }
-    public void setTelaPai(JDlgVendas jDlgVendas){
-    this.jDlgVendas = jDlgVendas;
+
+    public void setTelaPai(JDlgVendas jDlgVendas) {
+        this.jDlgVendas = jDlgVendas;
     }
 
     /**
@@ -86,7 +90,7 @@ public class JDlgVendasPesquisar extends javax.swing.JDialog {
     private void jBntOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntOkActionPerformed
         // TODO add your handling code here:
         int linSel = jTable1.getSelectedRow();
-         setVisible(false);
+        setVisible(false);
     }//GEN-LAST:event_jBntOkActionPerformed
 
     /**
