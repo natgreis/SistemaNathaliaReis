@@ -20,10 +20,11 @@ public class JDlgProduto extends javax.swing.JDialog {
         initComponents();
         setTitle("Cadastro de Produtos");
         setLocationRelativeTo(null);
-        Util.habilitar(false, jTxtNome, jTxtCodigo, jTxtDescricao, jTxtDescricao,jFrmtDataCad,
+        Util.habilitar(false, jTxtNome, jTxtCodigo, jTxtDescricao, jTxtDescricao, jFrmtDataCad,
                 jTxtTamanho, jTxtCor, jTxtCategoria, jTxtPreco, jBtnConfirmar, jBtnCancelar);
 
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -236,7 +237,7 @@ public class JDlgProduto extends javax.swing.JDialog {
 
     private void jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirActionPerformed
         // TODO add your handling code here:
-        Util.habilitar(true, jTxtNome, jTxtCodigo, jTxtDescricao, jTxtDescricao,jFrmtDataCad,
+        Util.habilitar(true, jTxtNome, jTxtCodigo, jTxtDescricao, jTxtDescricao, jFrmtDataCad,
                 jTxtTamanho, jTxtCor, jTxtCategoria, jTxtPreco, jBtnConfirmar, jBtnCancelar);
         Util.habilitar(false, jBtnAlterar, jBtnExcluir, jBtnIncluir, jBtnPesquisar);
         Util.limpar(jTxtCodigo, jTxtNome);
@@ -246,7 +247,7 @@ public class JDlgProduto extends javax.swing.JDialog {
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
         // TODO add your handling code here:
-         Util.habilitar(true, jTxtNome, jTxtCodigo, jTxtDescricao, jTxtDescricao,jFrmtDataCad,
+        Util.habilitar(true, jTxtNome, jTxtCodigo, jTxtDescricao, jTxtDescricao, jFrmtDataCad,
                 jTxtTamanho, jTxtCor, jTxtCategoria, jTxtPreco, jBtnConfirmar, jBtnCancelar);
         Util.habilitar(false, jBtnAlterar, jBtnExcluir, jBtnIncluir, jBtnPesquisar);
         Util.limpar(jTxtCodigo, jTxtNome);
@@ -259,7 +260,7 @@ public class JDlgProduto extends javax.swing.JDialog {
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
         // TODO add your handling code here:
-         Util.habilitar(false, jTxtNome, jTxtCodigo, jTxtDescricao, jTxtDescricao,jFrmtDataCad,
+        Util.habilitar(false, jTxtNome, jTxtCodigo, jTxtDescricao, jTxtDescricao, jFrmtDataCad,
                 jTxtTamanho, jTxtCor, jTxtCategoria, jTxtPreco, jBtnConfirmar, jBtnCancelar);
         Util.habilitar(true, jBtnAlterar, jBtnExcluir, jBtnIncluir, jBtnPesquisar);
         Util.limpar(jTxtCodigo, jTxtNome);

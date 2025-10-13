@@ -3,14 +3,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package view;
-import java.util.List;
 
 /**
  *
  * @author u07884727129
  */
 public class JDlgProdutoPesquisar extends javax.swing.JDialog {
+
     JDlgProduto jDlgProduto;
+
     /**
      * Creates new form JDlgProdutoPesquisar
      */

@@ -4,9 +4,6 @@
  */
 package view;
 
-
-import java.util.List;
-
 /**
  *
  * @author u07884727129

@@ -3,14 +3,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package view;
-import java.util.List;
 
 /**
  *
  * @author u07884727129
  */
 public class JDlgFuncionariosPesquisar extends javax.swing.JDialog {
+
     JDlgFuncionarios jDlgFuncionarios;
+
     /**
      * Creates new form JDlgFuncionariosPesquisar
      */
@@ -19,10 +20,10 @@ public class JDlgFuncionariosPesquisar extends javax.swing.JDialog {
         initComponents();
         setTitle("Pesquisar Funcionario");
         setLocationRelativeTo(null);
-        
+
     }
-    
-    public void setTelaPai(JDlgFuncionarios jDlgFuncionarios){
+
+    public void setTelaPai(JDlgFuncionarios jDlgFuncionarios) {
         this.jDlgFuncionarios = jDlgFuncionarios;
     }
 

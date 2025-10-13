@@ -12,7 +12,6 @@ import tools.Util;
  */
 public class JDlgClientes extends javax.swing.JDialog {
 
-
     /**
      * Creates new form JDlgClientes
      */
@@ -21,14 +20,11 @@ public class JDlgClientes extends javax.swing.JDialog {
         initComponents();
         setTitle("Cadastro de Clientes");
         setLocationRelativeTo(null);
-        Util.habilitar(false, jTxtNome, jTxtCodigo, jFmtTel, jFmtCpf,jFmtDataCadastro, jFmtDataNascimento,
-                jTxtEmail, jTxtEndereco, jTxtCidade, jTxtBairro,jCboEstado,
+        Util.habilitar(false, jTxtNome, jTxtCodigo, jFmtTel, jFmtCpf, jFmtDataCadastro, jFmtDataNascimento,
+                jTxtEmail, jTxtEndereco, jTxtCidade, jTxtBairro, jCboEstado,
                 jFmtCep, jTxtCredito, jChbAtivo, jTxtObservacao, jBtnConfirmar, jBtnCancelar);
 
     }
-
-
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -297,8 +293,8 @@ public class JDlgClientes extends javax.swing.JDialog {
 
     private void jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirActionPerformed
         // TODO add your handling code here:
-        Util.habilitar(true, jTxtNome, jTxtCodigo, jFmtTel, jFmtCpf,jFmtDataCadastro, jFmtDataNascimento,
-                jTxtEmail, jTxtEndereco, jTxtCidade, jTxtBairro,jCboEstado,jFmtCep, jTxtCredito, jChbAtivo, jTxtObservacao, jBtnConfirmar, jBtnCancelar);
+        Util.habilitar(true, jTxtNome, jTxtCodigo, jFmtTel, jFmtCpf, jFmtDataCadastro, jFmtDataNascimento,
+                jTxtEmail, jTxtEndereco, jTxtCidade, jTxtBairro, jCboEstado, jFmtCep, jTxtCredito, jChbAtivo, jTxtObservacao, jBtnConfirmar, jBtnCancelar);
         Util.habilitar(false, jBtnAlterar, jBtnExcluir, jBtnIncluir, jBtnPesquisar);
         Util.limpar(jTxtCodigo, jTxtNome);
         Util.mensagem("nao implementado");
@@ -307,29 +303,29 @@ public class JDlgClientes extends javax.swing.JDialog {
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
         // TODO add your handling code here:
-       Util.habilitar(true, jTxtNome, jTxtCodigo, jFmtTel, jFmtCpf,jFmtDataCadastro, jFmtDataNascimento,
-                jTxtEmail, jTxtEndereco, jTxtCidade, jTxtBairro,jCboEstado,jFmtCep, jTxtCredito, jChbAtivo, jTxtObservacao, jBtnConfirmar, jBtnCancelar);
+        Util.habilitar(true, jTxtNome, jTxtCodigo, jFmtTel, jFmtCpf, jFmtDataCadastro, jFmtDataNascimento,
+                jTxtEmail, jTxtEndereco, jTxtCidade, jTxtBairro, jCboEstado, jFmtCep, jTxtCredito, jChbAtivo, jTxtObservacao, jBtnConfirmar, jBtnCancelar);
         Util.habilitar(false, jBtnAlterar, jBtnExcluir, jBtnIncluir, jBtnPesquisar);
         Util.limpar(jTxtCodigo, jTxtNome);
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
         // TODO add your handling code here:
-          int cod = Util.strToInt(jTxtCodigo.getText());
-     
+        int cod = Util.strToInt(jTxtCodigo.getText());
+
     }//GEN-LAST:event_jBtnConfirmarActionPerformed
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
         // TODO add your handling code here:
-        Util.habilitar(false, jTxtNome, jTxtCodigo, jFmtTel, jFmtCpf,jFmtDataCadastro, jFmtDataNascimento,
-                jTxtEmail, jTxtEndereco, jTxtCidade, jTxtBairro,jCboEstado,jFmtCep, jTxtCredito, jChbAtivo, jTxtObservacao, jBtnConfirmar, jBtnCancelar);
+        Util.habilitar(false, jTxtNome, jTxtCodigo, jFmtTel, jFmtCpf, jFmtDataCadastro, jFmtDataNascimento,
+                jTxtEmail, jTxtEndereco, jTxtCidade, jTxtBairro, jCboEstado, jFmtCep, jTxtCredito, jChbAtivo, jTxtObservacao, jBtnConfirmar, jBtnCancelar);
         Util.habilitar(true, jBtnAlterar, jBtnExcluir, jBtnIncluir, jBtnPesquisar);
     }//GEN-LAST:event_jBtnCancelarActionPerformed
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
         // TODO add your handling code here:
-       Util.pergunta("Deseja Excluir?");
-        
+        Util.pergunta("Deseja Excluir?");
+
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
     private void jBtnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPesquisarActionPerformed
