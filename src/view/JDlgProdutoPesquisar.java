@@ -23,6 +23,7 @@ public class JDlgProdutoPesquisar extends javax.swing.JDialog {
     public JDlgProdutoPesquisar(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
         setTitle("Pesquisar Produtos");
         controllerProdutos = new ControllerProdutos();
         ProdutosDAO produtosDAO = new ProdutosDAO();

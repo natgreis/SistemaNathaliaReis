@@ -4,6 +4,8 @@
  */
 package tools;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -50,15 +52,31 @@ public class Util {
         return String.valueOf(num);
     }
     public static double strToDouble (String num){
-        return 0.0;
+        return Double.parseDouble(num);
     }
     public static String doubleToStr (double num){
-        return "";
+        return String.valueOf(num);
     }
     public static Date strToDate (String data){
-        return null;
+       SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        sdf.setLenient(false);
+        try {
+            return sdf.parse(data);
+        } catch (ParseException e) {
+            return null;
+        }
     }
     public static String dateToStr(Date data){
-        return "";
+        if (data == null) return "";
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        return sdf.format(data);
+    }
+    public static boolean validarEmail(String email) {
+        if (email == null || email.trim().isEmpty()) {
+            return false;
+        }
+
+        String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$";
+        return email.matches(emailRegex);
     }
 }

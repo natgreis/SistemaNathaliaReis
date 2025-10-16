@@ -179,9 +179,17 @@ private boolean incluir = true;
 
         jLabel3.setText("CPF");
 
+        jFmtCpf.setText("   .   .   -  ");
+
         jLabel4.setText("Telefone");
 
         jLabel5.setText("Email");
+
+        try {
+            jFmtDataNascimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         jLabel6.setText("Data de nascimento");
 
@@ -196,6 +204,17 @@ private boolean incluir = true;
         jLabel11.setText("CEP");
 
         jLabel12.setText("Data de cadastro");
+
+        try {
+            jFmtDataCadastro.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jFmtDataCadastro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFmtDataCadastroActionPerformed(evt);
+            }
+        });
 
         jChbAtivo.setText("Ativo");
 
@@ -255,9 +274,8 @@ private boolean incluir = true;
                                         .addComponent(jCboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addComponent(jTxtObservacao, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTxtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel8)
-                        .addComponent(jLabel11))
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel11)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -363,9 +381,7 @@ private boolean incluir = true;
         Util.habilitar(true, jTxtNome, jTxtCodigo, jFmtTel, jFmtCpf, jFmtDataCadastro, jFmtDataNascimento,
                 jTxtEmail, jTxtEndereco, jTxtCidade, jTxtBairro, jCboEstado, jFmtCep, jTxtCredito, jChbAtivo, jTxtObservacao, jBtnConfirmar, jBtnCancelar);
         Util.habilitar(false, jBtnAlterar, jBtnExcluir, jBtnIncluir, jBtnPesquisar);
-        Util.limpar(jTxtNome, jTxtCodigo, jFmtTel, jFmtCpf, jFmtDataCadastro, jFmtDataNascimento,
-                jTxtEmail, jTxtEndereco, jTxtCidade, jTxtBairro, jCboEstado, jFmtCep, jTxtCredito, jChbAtivo, jTxtObservacao);
-
+        
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
@@ -422,6 +438,10 @@ private boolean incluir = true;
         jDlgClientesPesquisar.setTelaPai((this));
         jDlgClientesPesquisar.setVisible(true);
     }//GEN-LAST:event_jBtnPesquisarActionPerformed
+
+    private void jFmtDataCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFmtDataCadastroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFmtDataCadastroActionPerformed
 
     /**
      * @param args the command line arguments

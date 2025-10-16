@@ -113,6 +113,12 @@ private boolean incluir = true;
 
         jLabel8.setText("Data de admissão");
 
+        try {
+            jFmtAdmissao.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
         jChbAtivo.setText("Ativo");
 
         jBtnIncluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/incluir.png"))); // NOI18N

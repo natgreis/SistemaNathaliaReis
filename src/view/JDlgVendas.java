@@ -54,9 +54,9 @@ private boolean incluir = true;
     venda.setNgrDataVenda(Util.strToDate(jFmtDataVenda.getText()));
     venda.setNgrValorTotal(Util.strToDouble(jTxtTotal.getText()));
     NgrClientes clienteSelecionado = (NgrClientes) jCboCliente.getSelectedItem();
-    venda.setNgrFkCliente(clienteSelecionado);
+    venda.setNgrCliente(clienteSelecionado);
     NgrFuncionarios funcionarioSelecionado = (NgrFuncionarios) jCboFuncionario.getSelectedItem();
-    venda.setNgrFkFuncionario(funcionarioSelecionado);
+    venda.setNgrFuncionario(funcionarioSelecionado);
 
     return venda;
 }
@@ -102,6 +102,12 @@ private boolean incluir = true;
         jLabel1.setText("Código");
 
         jLabel2.setText("Data da Venda");
+
+        try {
+            jFmtDataVenda.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         jLabel4.setText("Cliente");
 
@@ -173,10 +179,6 @@ private boolean incluir = true;
             }
         ));
         jScrollPane1.setViewportView(jTable);
-
-        jCboCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jCboFuncionario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jBntIncluirProd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/incluir.png"))); // NOI18N
         jBntIncluirProd.addActionListener(new java.awt.event.ActionListener() {
@@ -431,8 +433,8 @@ private boolean incluir = true;
     private javax.swing.JButton jBtnExcluir;
     private javax.swing.JButton jBtnIncluir;
     private javax.swing.JButton jBtnPesquisar;
-    private javax.swing.JComboBox<String> jCboCliente;
-    private javax.swing.JComboBox<String> jCboFuncionario;
+    private javax.swing.JComboBox<NgrClientes> jCboCliente;
+    private javax.swing.JComboBox<NgrFuncionarios> jCboFuncionario;
     private javax.swing.JFormattedTextField jFmtDataVenda;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
