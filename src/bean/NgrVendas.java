@@ -2,9 +2,7 @@ package bean;
 // Generated 13/10/2025 15:50:47 by Hibernate Tools 4.3.1
 
 
-import java.math.BigDecimal;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,10 +25,9 @@ public class NgrVendas  implements java.io.Serializable {
 
      private int ngrIdVenda;
      private Date ngrDataVenda;
-     private Integer ngrFkCliente;
-     private Integer ngrFkFuncionario;
-     private BigDecimal ngrValorTotal;
-     private Set ngrVendaProdutos = new HashSet(0);
+     private int ngrFkCliente;
+     private int ngrFkFuncionario;
+     private double ngrValorTotal;
 
     public NgrVendas() {
     }
@@ -39,13 +36,12 @@ public class NgrVendas  implements java.io.Serializable {
     public NgrVendas(int ngrIdVenda) {
         this.ngrIdVenda = ngrIdVenda;
     }
-    public NgrVendas(int ngrIdVenda, Date ngrDataVenda, Integer ngrFkCliente, Integer ngrFkFuncionario, BigDecimal ngrValorTotal, Set ngrVendaProdutos) {
+    public NgrVendas(int ngrIdVenda, Date ngrDataVenda, int ngrFkCliente, int ngrFkFuncionario, double ngrValorTotal, Set ngrVendaProdutos) {
        this.ngrIdVenda = ngrIdVenda;
        this.ngrDataVenda = ngrDataVenda;
        this.ngrFkCliente = ngrFkCliente;
        this.ngrFkFuncionario = ngrFkFuncionario;
        this.ngrValorTotal = ngrValorTotal;
-       this.ngrVendaProdutos = ngrVendaProdutos;
     }
    
      @Id 
@@ -72,42 +68,34 @@ public class NgrVendas  implements java.io.Serializable {
 
     
     @Column(name="ngr_fk_Cliente")
-    public Integer getNgrFkCliente() {
+    public int getNgrFkCliente() {
         return this.ngrFkCliente;
     }
     
-    public void setNgrFkCliente(Integer ngrFkCliente) {
+    public void setNgrFkCliente(int ngrFkCliente) {
         this.ngrFkCliente = ngrFkCliente;
     }
 
     
     @Column(name="ngr_fk_Funcionario")
-    public Integer getNgrFkFuncionario() {
+    public int getNgrFkFuncionario() {
         return this.ngrFkFuncionario;
     }
     
-    public void setNgrFkFuncionario(Integer ngrFkFuncionario) {
+    public void setNgrFkFuncionario(int ngrFkFuncionario) {
         this.ngrFkFuncionario = ngrFkFuncionario;
     }
 
     
     @Column(name="ngr_valorTotal", precision=10)
-    public BigDecimal getNgrValorTotal() {
+    public double getNgrValorTotal() {
         return this.ngrValorTotal;
     }
     
-    public void setNgrValorTotal(BigDecimal ngrValorTotal) {
+    public void setNgrValorTotal(double ngrValorTotal) {
         this.ngrValorTotal = ngrValorTotal;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="ngrVendas")
-    public Set getNgrVendaProdutos() {
-        return this.ngrVendaProdutos;
-    }
-    
-    public void setNgrVendaProdutos(Set ngrVendaProdutos) {
-        this.ngrVendaProdutos = ngrVendaProdutos;
-    }
 
 
 

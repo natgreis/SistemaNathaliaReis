@@ -2,7 +2,6 @@ package bean;
 // Generated 13/10/2025 15:50:47 by Hibernate Tools 4.3.1
 
 
-import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -24,8 +23,8 @@ public class NgrVendaProduto  implements java.io.Serializable {
      private int ngrIdVendaProduto;
      private NgrProdutos ngrProdutos;
      private NgrVendas ngrVendas;
-     private BigDecimal ngrPrecoUnitario;
-     private Integer ngrQuantidade;
+     private double ngrPrecoUnitario;
+     private int ngrQuantidade;
 
     public NgrVendaProduto() {
     }
@@ -34,7 +33,7 @@ public class NgrVendaProduto  implements java.io.Serializable {
     public NgrVendaProduto(int ngrIdVendaProduto) {
         this.ngrIdVendaProduto = ngrIdVendaProduto;
     }
-    public NgrVendaProduto(int ngrIdVendaProduto, NgrProdutos ngrProdutos, NgrVendas ngrVendas, BigDecimal ngrPrecoUnitario, Integer ngrQuantidade) {
+    public NgrVendaProduto(int ngrIdVendaProduto, NgrProdutos ngrProdutos, NgrVendas ngrVendas, double ngrPrecoUnitario, int ngrQuantidade) {
        this.ngrIdVendaProduto = ngrIdVendaProduto;
        this.ngrProdutos = ngrProdutos;
        this.ngrVendas = ngrVendas;
@@ -76,21 +75,21 @@ public class NgrVendaProduto  implements java.io.Serializable {
 
     
     @Column(name="ngr_precoUnitario", precision=10)
-    public BigDecimal getNgrPrecoUnitario() {
+    public double getNgrPrecoUnitario() {
         return this.ngrPrecoUnitario;
     }
     
-    public void setNgrPrecoUnitario(BigDecimal ngrPrecoUnitario) {
+    public void setNgrPrecoUnitario(double ngrPrecoUnitario) {
         this.ngrPrecoUnitario = ngrPrecoUnitario;
     }
 
     
     @Column(name="ngr_quantidade")
-    public Integer getNgrQuantidade() {
+    public int getNgrQuantidade() {
         return this.ngrQuantidade;
     }
     
-    public void setNgrQuantidade(Integer ngrQuantidade) {
+    public void setNgrQuantidade(int ngrQuantidade) {
         this.ngrQuantidade = ngrQuantidade;
     }
 

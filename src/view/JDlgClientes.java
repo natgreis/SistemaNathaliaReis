@@ -4,6 +4,8 @@
  */
 package view;
 
+import bean.NgrClientes;
+import dao.ClientesDAO;
 import tools.Util;
 
 /**
@@ -11,7 +13,7 @@ import tools.Util;
  * @author macbook
  */
 public class JDlgClientes extends javax.swing.JDialog {
-
+private boolean incluir = true;
     /**
      * Creates new form JDlgClientes
      */
@@ -20,10 +22,60 @@ public class JDlgClientes extends javax.swing.JDialog {
         initComponents();
         setTitle("Cadastro de Clientes");
         setLocationRelativeTo(null);
-        Util.habilitar(false, jTxtNome, jTxtCodigo, jFmtTel, jFmtCpf, jFmtDataCadastro, jFmtDataNascimento,
-                jTxtEmail, jTxtEndereco, jTxtCidade, jTxtBairro, jCboEstado,
-                jFmtCep, jTxtCredito, jChbAtivo, jTxtObservacao, jBtnConfirmar, jBtnCancelar);
+        Util.habilitar(false, jTxtCodigo, jTxtNome, jFmtCpf, jTxtEmail,
+                jFmtCep, jTxtEndereco, jTxtObservacao, jTxtBairro, jTxtCidade,
+                jTxtCredito, jFmtDataNascimento, jFmtDataCadastro, jCboEstado, jFmtTel,
+                jChbAtivo, jBtnConfirmar, jBtnCancelar);
+        Util.limpar(jTxtCodigo, jTxtNome, jFmtCpf, jTxtEmail,
+                jFmtCep, jTxtEndereco, jTxtObservacao, jTxtBairro, jTxtCidade,
+                jTxtCredito, jFmtDataNascimento, jFmtDataCadastro, jCboEstado, jFmtTel,
+                jChbAtivo);
+    }
 
+    public void beanView(NgrClientes clientes) {
+        jTxtCodigo.setText(Util.intToStr(clientes.getNgrIdCliente()));
+        jTxtNome.setText(clientes.getNgrNome());
+        jFmtCpf.setText(clientes.getNgrCpf());
+        jTxtEmail.setText(clientes.getNgrEmail());
+        jFmtTel.setText(clientes.getNgrTelefone());
+        jTxtEndereco.setText(clientes.getNgrEndereco());
+        jTxtBairro.setText(clientes.getNgrBairro());
+        jTxtCidade.setText(clientes.getNgrCidade());
+        jFmtCep.setText(clientes.getNgrCep());
+        jFmtDataNascimento.setText(Util.dateToStr(clientes.getNgrDataNascimento()));
+        jFmtDataCadastro.setText(Util.dateToStr(clientes.getNgrDataCadastro()));
+        jTxtCredito.setText(Util.intToStr(clientes.getNgrLimiteCredito()));
+        jTxtObservacao.setText(clientes.getNgrObservacoes());
+        jCboEstado.setSelectedItem(clientes.getNgrEstado());
+
+        jChbAtivo.setSelected(clientes.getNgrAtivo().equals("S"));
+    }
+
+    public NgrClientes viewBean() {
+        NgrClientes clientes = new NgrClientes();
+
+        clientes.setNgrIdCliente(Util.strToInt(jTxtCodigo.getText()));
+        clientes.setNgrNome(jTxtNome.getText());
+        clientes.setNgrCpf(jFmtCpf.getText());
+        clientes.setNgrEmail(jTxtEmail.getText());
+        clientes.setNgrTelefone(jFmtTel.getText());
+        clientes.setNgrEndereco(jTxtEndereco.getText());
+        clientes.setNgrBairro(jTxtBairro.getText());
+        clientes.setNgrCidade(jTxtCidade.getText());
+        clientes.setNgrEstado(jCboEstado.getSelectedItem().toString());
+        clientes.setNgrCep(jFmtCep.getText());
+        clientes.setNgrDataNascimento(Util.strToDate(jFmtDataNascimento.getText()));
+        clientes.setNgrDataCadastro(Util.strToDate(jFmtDataCadastro.getText()));
+        clientes.setNgrLimiteCredito(Util.strToInt(jTxtCredito.getText()));
+        clientes.setNgrObservacoes(jTxtObservacao.getText());
+
+        if (jChbAtivo.isSelected()) {
+            clientes.setNgrAtivo("S");
+        } else {
+            clientes.setNgrAtivo("N");
+        }
+
+        return clientes;
     }
 
     /**
@@ -296,38 +348,66 @@ public class JDlgClientes extends javax.swing.JDialog {
 
     private void jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirActionPerformed
         // TODO add your handling code here:
+        jTxtCodigo.grabFocus();
         Util.habilitar(true, jTxtNome, jTxtCodigo, jFmtTel, jFmtCpf, jFmtDataCadastro, jFmtDataNascimento,
                 jTxtEmail, jTxtEndereco, jTxtCidade, jTxtBairro, jCboEstado, jFmtCep, jTxtCredito, jChbAtivo, jTxtObservacao, jBtnConfirmar, jBtnCancelar);
         Util.habilitar(false, jBtnAlterar, jBtnExcluir, jBtnIncluir, jBtnPesquisar);
-        Util.limpar(jTxtCodigo, jTxtNome);
-        Util.mensagem("nao implementado");
+        Util.limpar(jTxtNome, jTxtCodigo, jFmtTel, jFmtCpf, jFmtDataCadastro, jFmtDataNascimento,
+                jTxtEmail, jTxtEndereco, jTxtCidade, jTxtBairro, jCboEstado, jFmtCep, jTxtCredito, jChbAtivo, jTxtObservacao);
 
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
         // TODO add your handling code here:
+        
         Util.habilitar(true, jTxtNome, jTxtCodigo, jFmtTel, jFmtCpf, jFmtDataCadastro, jFmtDataNascimento,
                 jTxtEmail, jTxtEndereco, jTxtCidade, jTxtBairro, jCboEstado, jFmtCep, jTxtCredito, jChbAtivo, jTxtObservacao, jBtnConfirmar, jBtnCancelar);
         Util.habilitar(false, jBtnAlterar, jBtnExcluir, jBtnIncluir, jBtnPesquisar);
-        Util.limpar(jTxtCodigo, jTxtNome);
+        Util.limpar(jTxtNome, jTxtCodigo, jFmtTel, jFmtCpf, jFmtDataCadastro, jFmtDataNascimento,
+                jTxtEmail, jTxtEndereco, jTxtCidade, jTxtBairro, jCboEstado, jFmtCep, jTxtCredito, jChbAtivo, jTxtObservacao);
+
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
         // TODO add your handling code here:
-        int cod = Util.strToInt(jTxtCodigo.getText());
+        ClientesDAO clientesDAO = new ClientesDAO();
+        NgrClientes cliente = viewBean();
+        if (incluir) {
+            clientesDAO.insert(cliente);
+        } else {
+            clientesDAO.update(cliente);
+        }
+
+        Util.habilitar(false, jTxtNome, jTxtCodigo, jFmtTel, jFmtCpf, jFmtDataCadastro, jFmtDataNascimento,
+                jTxtEmail, jTxtEndereco, jTxtCidade, jTxtBairro, jCboEstado, jFmtCep, jTxtCredito, jChbAtivo, jTxtObservacao, jBtnConfirmar, jBtnCancelar);
+
+        Util.habilitar(true, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
+
+        Util.limpar(jTxtNome, jTxtCodigo, jFmtTel, jFmtCpf, jFmtDataCadastro, jFmtDataNascimento, 
+                jTxtEmail, jTxtEndereco, jTxtCidade, jTxtBairro, jCboEstado, jFmtCep, jTxtCredito, jChbAtivo, jTxtObservacao);
 
     }//GEN-LAST:event_jBtnConfirmarActionPerformed
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
         // TODO add your handling code here:
+        
         Util.habilitar(false, jTxtNome, jTxtCodigo, jFmtTel, jFmtCpf, jFmtDataCadastro, jFmtDataNascimento,
                 jTxtEmail, jTxtEndereco, jTxtCidade, jTxtBairro, jCboEstado, jFmtCep, jTxtCredito, jChbAtivo, jTxtObservacao, jBtnConfirmar, jBtnCancelar);
         Util.habilitar(true, jBtnAlterar, jBtnExcluir, jBtnIncluir, jBtnPesquisar);
+        Util.limpar(jTxtNome, jTxtCodigo, jFmtTel, jFmtCpf, jFmtDataCadastro, jFmtDataNascimento,
+                jTxtEmail, jTxtEndereco, jTxtCidade, jTxtBairro, jCboEstado, jFmtCep, jTxtCredito, jChbAtivo, jTxtObservacao);
+
     }//GEN-LAST:event_jBtnCancelarActionPerformed
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
         // TODO add your handling code here:
-        Util.pergunta("Deseja Excluir?");
+        if (Util.pergunta("Deseja mesmo Excluir?")) {
+            ClientesDAO clientesDAO = new ClientesDAO();
+            clientesDAO.delete(viewBean());
+            Util.limpar(jTxtNome, jTxtCodigo, jFmtTel, jFmtCpf, jFmtDataCadastro, jFmtDataNascimento,
+                    jTxtEmail, jTxtEndereco, jTxtCidade, jTxtBairro, jCboEstado, jFmtCep, jTxtCredito, jChbAtivo, jTxtObservacao);
+            Util.mensagem("Cliente excluído!");
+        }
 
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 

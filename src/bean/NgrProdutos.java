@@ -2,7 +2,6 @@ package bean;
 // Generated 13/10/2025 15:50:47 by Hibernate Tools 4.3.1
 
 
-import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -30,16 +29,15 @@ public class NgrProdutos  implements java.io.Serializable {
      private String ngrDescricao;
      private String ngrTamanho;
      private String ngrCor;
-     private BigDecimal ngrPreco;
+     private double ngrPreco;
      private String ngrCategoria;
      private Date ngrDataCadastro;
-     private Set ngrVendaProdutos = new HashSet(0);
 
     public NgrProdutos() {
     }
 
 	
-    public NgrProdutos(int ngrIdProduto, String ngrNome, String ngrDescricao, String ngrTamanho, String ngrCor, BigDecimal ngrPreco, String ngrCategoria) {
+    public NgrProdutos(int ngrIdProduto, String ngrNome, String ngrDescricao, String ngrTamanho, String ngrCor, double ngrPreco, String ngrCategoria) {
         this.ngrIdProduto = ngrIdProduto;
         this.ngrNome = ngrNome;
         this.ngrDescricao = ngrDescricao;
@@ -48,7 +46,7 @@ public class NgrProdutos  implements java.io.Serializable {
         this.ngrPreco = ngrPreco;
         this.ngrCategoria = ngrCategoria;
     }
-    public NgrProdutos(int ngrIdProduto, String ngrNome, String ngrDescricao, String ngrTamanho, String ngrCor, BigDecimal ngrPreco, String ngrCategoria, Date ngrDataCadastro, Set ngrVendaProdutos) {
+    public NgrProdutos(int ngrIdProduto, String ngrNome, String ngrDescricao, String ngrTamanho, String ngrCor, double ngrPreco, String ngrCategoria, Date ngrDataCadastro, Set ngrVendaProdutos) {
        this.ngrIdProduto = ngrIdProduto;
        this.ngrNome = ngrNome;
        this.ngrDescricao = ngrDescricao;
@@ -57,7 +55,6 @@ public class NgrProdutos  implements java.io.Serializable {
        this.ngrPreco = ngrPreco;
        this.ngrCategoria = ngrCategoria;
        this.ngrDataCadastro = ngrDataCadastro;
-       this.ngrVendaProdutos = ngrVendaProdutos;
     }
    
      @Id 
@@ -114,11 +111,11 @@ public class NgrProdutos  implements java.io.Serializable {
 
     
     @Column(name="ngr_preco", nullable=false, precision=10)
-    public BigDecimal getNgrPreco() {
+    public double getNgrPreco() {
         return this.ngrPreco;
     }
     
-    public void setNgrPreco(BigDecimal ngrPreco) {
+    public void setNgrPreco(double ngrPreco) {
         this.ngrPreco = ngrPreco;
     }
 
@@ -142,14 +139,6 @@ public class NgrProdutos  implements java.io.Serializable {
         this.ngrDataCadastro = ngrDataCadastro;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="ngrProdutos")
-    public Set getNgrVendaProdutos() {
-        return this.ngrVendaProdutos;
-    }
-    
-    public void setNgrVendaProdutos(Set ngrVendaProdutos) {
-        this.ngrVendaProdutos = ngrVendaProdutos;
-    }
 
 
 

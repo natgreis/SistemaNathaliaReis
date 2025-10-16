@@ -4,6 +4,8 @@
  */
 package view;
 
+import bean.NgrFuncionarios;
+import dao.FuncionariosDAO;
 import tools.Util;
 
 /**
@@ -11,19 +13,54 @@ import tools.Util;
  * @author macbook
  */
 public class JDlgFuncionarios extends javax.swing.JDialog {
-
+private boolean incluir = true;
     /**
      * Creates new form JDlgFuncionarios
      */
     public JDlgFuncionarios(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
-        initComponents();
-        setTitle("Cadastro de Funcionarios");
+        initComponents();   
+        setTitle("Cadastro de Usuários");
         setLocationRelativeTo(null);
-        Util.habilitar(false, jTxtNome, jTxtCodigo, jFmtTel, jFmtCpf, jFmtAdmissao,
+        Util.habilitar(false,jTxtNome, jTxtCodigo, jFmtTel, jFmtCpf, jFmtAdmissao,
                 jTxtEmail, jTxtCargo, jTxtSalario, jChbAtivo, jBtnConfirmar, jBtnCancelar);
+        Util.limpar(jTxtNome, jTxtCodigo, jFmtTel, jFmtCpf, jFmtAdmissao,
+                jTxtEmail, jTxtCargo, jTxtSalario, jChbAtivo);
+        
 
     }
+    
+    public void beanView(NgrFuncionarios funcionarios) {
+    jTxtCodigo.setText(Util.intToStr(funcionarios.getNgrIdFuncionario()));
+    jTxtNome.setText(funcionarios.getNgrNome());
+    jFmtCpf.setText(funcionarios.getNgrCpf());
+    jTxtCargo.setText(funcionarios.getNgrCargo());
+    jTxtEmail.setText(funcionarios.getNgrEmail());
+    jFmtTel.setText(funcionarios.getNgrTelefone());
+    jTxtSalario.setText(Util.doubleToStr(funcionarios.getNgrSalario()));
+    jFmtAdmissao.setText(Util.dateToStr(funcionarios.getNgrDataAdmissao()));
+    jChbAtivo.setSelected("S".equalsIgnoreCase(funcionarios.getNgrAtivo()));
+}
+    
+    public NgrFuncionarios viewBean() {
+    NgrFuncionarios funcionarios = new NgrFuncionarios();
+
+    funcionarios.setNgrIdFuncionario(Util.strToInt(jTxtCodigo.getText()));
+    funcionarios.setNgrNome(jTxtNome.getText());
+    funcionarios.setNgrCpf(jFmtCpf.getText());
+    funcionarios.setNgrCargo(jTxtCargo.getText());
+    funcionarios.setNgrEmail(jTxtEmail.getText());
+    funcionarios.setNgrTelefone(jFmtTel.getText());
+    funcionarios.setNgrSalario(Util.strToDouble(jTxtSalario.getText()));
+    funcionarios.setNgrDataAdmissao(Util.strToDate(jFmtAdmissao.getText()));
+    if (jChbAtivo.isSelected() == true) {
+            funcionarios.setNgrAtivo("S");
+        } else {
+            funcionarios.setNgrAtivo("N");
+        }
+        return funcionarios;
+}
+
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -232,21 +269,32 @@ public class JDlgFuncionarios extends javax.swing.JDialog {
         // TODO add your handling code here:
         Util.habilitar(true, jTxtNome, jTxtCodigo, jFmtTel, jFmtCpf, jFmtAdmissao,
                 jTxtEmail, jTxtCargo, jTxtSalario, jChbAtivo, jBtnConfirmar, jBtnCancelar);
-        Util.habilitar(false, jBtnAlterar, jBtnExcluir, jBtnIncluir, jBtnPesquisar);
-        Util.limpar(jTxtCodigo);
-        Util.mensagem("nao implementado");
+    Util.habilitar(false, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
+    Util.limpar(jTxtNome, jTxtCodigo, jFmtTel, jFmtCpf, jFmtAdmissao,
+                jTxtEmail, jTxtCargo, jTxtSalario, jChbAtivo);
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
         // TODO add your handling code here:
         Util.habilitar(true, jTxtNome, jTxtCodigo, jFmtTel, jFmtCpf, jFmtAdmissao,
                 jTxtEmail, jTxtCargo, jTxtSalario, jChbAtivo, jBtnConfirmar, jBtnCancelar);
-        Util.habilitar(false, jBtnAlterar, jBtnExcluir, jBtnIncluir, jBtnPesquisar);
+    Util.habilitar(false, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
         // TODO add your handling code here:
-        int cod = Util.strToInt(jTxtCodigo.getText());
+        FuncionariosDAO funcionariosDAO = new FuncionariosDAO();
+  NgrFuncionarios funcionarios = viewBean();
+if (incluir) {
+        funcionariosDAO.insert(funcionarios);
+    } else {
+        funcionariosDAO.update(funcionarios);
+    }
+    Util.habilitar(false, jTxtNome, jTxtCodigo, jFmtTel, jFmtCpf, jFmtAdmissao,
+                jTxtEmail, jTxtCargo, jTxtSalario, jChbAtivo, jBtnConfirmar, jBtnCancelar);
+    Util.habilitar(true, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
+    Util.limpar(jTxtNome, jTxtCodigo, jFmtTel, jFmtCpf, jFmtAdmissao,
+                jTxtEmail, jTxtCargo, jTxtSalario, jChbAtivo);
 
     }//GEN-LAST:event_jBtnConfirmarActionPerformed
 
@@ -254,12 +302,21 @@ public class JDlgFuncionarios extends javax.swing.JDialog {
         // TODO add your handling code here:
         Util.habilitar(false, jTxtNome, jTxtCodigo, jFmtTel, jFmtCpf, jFmtAdmissao,
                 jTxtEmail, jTxtCargo, jTxtSalario, jChbAtivo, jBtnConfirmar, jBtnCancelar);
-        Util.habilitar(true, jBtnAlterar, jBtnExcluir, jBtnIncluir, jBtnPesquisar);
+    Util.habilitar(true, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
+    Util.limpar(jTxtNome, jTxtCodigo, jFmtTel, jFmtCpf, jFmtAdmissao,
+                jTxtEmail, jTxtCargo, jTxtSalario, jChbAtivo);
+        
     }//GEN-LAST:event_jBtnCancelarActionPerformed
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
         // TODO add your handling code here:  
-        Util.pergunta("Deseja Excluir?");
+        if (Util.pergunta("Deseja Excluir?")) {
+        FuncionariosDAO funcionariosDAO = new FuncionariosDAO();
+        funcionariosDAO.delete(viewBean());
+        Util.limpar(jTxtNome, jTxtCodigo, jFmtTel, jFmtCpf, jFmtAdmissao,
+                jTxtEmail, jTxtCargo, jTxtSalario, jChbAtivo);
+        Util.mensagem("Funcionario excluído!");
+        }
 
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 

@@ -3,7 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package view;
-
+import bean.NgrClientes;
+import dao.ClientesDAO;
+import java.util.List;
 /**
  *
  * @author u07884727129
@@ -11,6 +13,7 @@ package view;
 public class JDlgClientesPesquisar extends javax.swing.JDialog {
 
     JDlgClientes jDlgClientes;
+ ControllerClientes controllerClientes;
 
     /**
      * Creates new form JDlgClientesPesquisar
@@ -18,8 +21,13 @@ public class JDlgClientesPesquisar extends javax.swing.JDialog {
     public JDlgClientesPesquisar(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        setTitle("Pesquisar Clientes");
         setLocationRelativeTo(null);
+        setTitle("Pesquisar Clientes");
+        controllerClientes = new ControllerClientes();
+        ClientesDAO clientesDAO = new ClientesDAO();
+        List lista = (List) clientesDAO.listAll();
+        controllerClientes.setList(lista);
+        jTable.setModel(controllerClientes);
     }
 
     public void setTelaPai(JDlgClientes jDlgClientes) {
@@ -87,8 +95,9 @@ public class JDlgClientesPesquisar extends javax.swing.JDialog {
 
     private void jBntOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntOkActionPerformed
         // TODO add your handling code here:
-        int linSel = jTable.getSelectedRow();
-        setVisible(false);
+        NgrClientes clientes = controllerClientes.getBean(jTable.getSelectedRow());
+        jDlgClientes.beanView(clientes);
+        this.setVisible(false);
     }//GEN-LAST:event_jBntOkActionPerformed
 
     /**

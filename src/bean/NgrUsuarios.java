@@ -26,7 +26,7 @@ public class NgrUsuarios  implements java.io.Serializable {
      private String ngrCpf;
      private Date ngrDataNascimento;
      private String ngrSenha;
-     private Integer ngrNivel;
+     private int ngrNivel;
      private String ngrAtivo;
 
     public NgrUsuarios() {
@@ -36,7 +36,7 @@ public class NgrUsuarios  implements java.io.Serializable {
     public NgrUsuarios(int ngrIdUsuarios) {
         this.ngrIdUsuarios = ngrIdUsuarios;
     }
-    public NgrUsuarios(int ngrIdUsuarios, String ngrNome, String ngrApelido, String ngrCpf, Date ngrDataNascimento, String ngrSenha, Integer ngrNivel, String ngrAtivo) {
+    public NgrUsuarios(int ngrIdUsuarios, String ngrNome, String ngrApelido, String ngrCpf, Date ngrDataNascimento, String ngrSenha, int ngrNivel, String ngrAtivo) {
        this.ngrIdUsuarios = ngrIdUsuarios;
        this.ngrNome = ngrNome;
        this.ngrApelido = ngrApelido;
@@ -111,11 +111,11 @@ public class NgrUsuarios  implements java.io.Serializable {
 
     
     @Column(name="ngr_nivel")
-    public Integer getNgrNivel() {
+    public int getNgrNivel() {
         return this.ngrNivel;
     }
     
-    public void setNgrNivel(Integer ngrNivel) {
+    public void setNgrNivel(int ngrNivel) {
         this.ngrNivel = ngrNivel;
     }
 

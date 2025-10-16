@@ -11,6 +11,7 @@ package view;
 public class JDlgFuncionariosPesquisar extends javax.swing.JDialog {
 
     JDlgFuncionarios jDlgFuncionarios;
+    ControllerFuncionarios controllerFuncionarios;
 
     /**
      * Creates new form JDlgFuncionariosPesquisar

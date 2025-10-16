@@ -4,13 +4,18 @@
  */
 package view;
 
+import bean.NgrUsuarios;
+import dao.UsuariosDAO;
+import java.util.List;
+
 /**
  *
  * @author macbook
  */
 public class JDlgUsuariosPesquisar extends javax.swing.JDialog {
 
-    JDlgUsuarios jDlgUsuarios;
+    private JDlgUsuarios jDlgUsuarios;
+    ControllerUsuarios controllerUsuarios;
 
     /**
      * Creates new form JDlgUsuariosPesquisar
@@ -18,8 +23,13 @@ public class JDlgUsuariosPesquisar extends javax.swing.JDialog {
     public JDlgUsuariosPesquisar(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        setTitle("Pesquisar Usuario");
         setLocationRelativeTo(null);
+        setTitle("Pesquisar Usuários");
+        controllerUsuarios = new ControllerUsuarios();
+        UsuariosDAO usuariosDAO = new UsuariosDAO();
+        List lista = (List) usuariosDAO.listAll();
+        controllerUsuarios.setList(lista);
+        jTable1.setModel(controllerUsuarios);
 
     }
 
@@ -88,9 +98,9 @@ public class JDlgUsuariosPesquisar extends javax.swing.JDialog {
 
     private void jBntOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntOkActionPerformed
         // TODO add your handling code here:
-        int linSel = jTable1.getSelectedRow();
-
-        setVisible(false);
+        NgrUsuarios usuarios =  controllerUsuarios.getBean( jTable1.getSelectedRow() );
+        jDlgUsuarios.beanView(usuarios);
+        this.setVisible(false);
     }//GEN-LAST:event_jBntOkActionPerformed
 
     /**

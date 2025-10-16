@@ -33,7 +33,7 @@ public class NgrClientes  implements java.io.Serializable {
      private String ngrEstado;
      private Date ngrDataNascimento;
      private String ngrAtivo;
-     private Integer ngrLimiteCredito;
+     private int ngrLimiteCredito;
      private String ngrObservacoes;
 
     public NgrClientes() {
@@ -43,7 +43,7 @@ public class NgrClientes  implements java.io.Serializable {
     public NgrClientes(int ngrIdCliente) {
         this.ngrIdCliente = ngrIdCliente;
     }
-    public NgrClientes(int ngrIdCliente, String ngrNome, String ngrCpf, String ngrEmail, String ngrTelefone, String ngrEndereco, String ngrCep, Date ngrDataCadastro, String ngrBairro, String ngrCidade, String ngrEstado, Date ngrDataNascimento, String ngrAtivo, Integer ngrLimiteCredito, String ngrObservacoes) {
+    public NgrClientes(int ngrIdCliente, String ngrNome, String ngrCpf, String ngrEmail, String ngrTelefone, String ngrEndereco, String ngrCep, Date ngrDataCadastro, String ngrBairro, String ngrCidade, String ngrEstado, Date ngrDataNascimento, String ngrAtivo, int ngrLimiteCredito, String ngrObservacoes) {
        this.ngrIdCliente = ngrIdCliente;
        this.ngrNome = ngrNome;
        this.ngrCpf = ngrCpf;
@@ -195,11 +195,11 @@ public class NgrClientes  implements java.io.Serializable {
 
     
     @Column(name="ngr_limite_credito")
-    public Integer getNgrLimiteCredito() {
+    public int getNgrLimiteCredito() {
         return this.ngrLimiteCredito;
     }
     
-    public void setNgrLimiteCredito(Integer ngrLimiteCredito) {
+    public void setNgrLimiteCredito(int ngrLimiteCredito) {
         this.ngrLimiteCredito = ngrLimiteCredito;
     }
 
