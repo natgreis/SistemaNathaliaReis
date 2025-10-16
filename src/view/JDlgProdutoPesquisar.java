@@ -4,12 +4,17 @@
  */
 package view;
 
+import bean.NgrProdutos;
+import dao.ProdutosDAO;
+import java.util.List;
+
 /**
  *
  * @author u07884727129
  */
 public class JDlgProdutoPesquisar extends javax.swing.JDialog {
 
+    ControllerProdutos controllerProdutos;
     JDlgProduto jDlgProduto;
 
     /**
@@ -19,7 +24,11 @@ public class JDlgProdutoPesquisar extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setTitle("Pesquisar Produtos");
-        setLocationRelativeTo(null);
+        controllerProdutos = new ControllerProdutos();
+        ProdutosDAO produtosDAO = new ProdutosDAO();
+        List lista = (List) produtosDAO.listAll();
+        controllerProdutos.setList(lista);
+        jTable.setModel(controllerProdutos);
     }
 
     public void setTelaPai(JDlgProduto jDlgProduto) {
@@ -86,8 +95,9 @@ public class JDlgProdutoPesquisar extends javax.swing.JDialog {
 
     private void jBntOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntOKActionPerformed
         // TODO add your handling code here:
-        int linSel = jTable.getSelectedRow();
-        setVisible(false);
+        NgrProdutos produtos = controllerProdutos.getBean(jTable.getSelectedRow());
+        jDlgProduto.beanView(produtos);
+        this.setVisible(false);
     }//GEN-LAST:event_jBntOKActionPerformed
 
     /**

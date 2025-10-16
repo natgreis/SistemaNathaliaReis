@@ -25,8 +25,8 @@ public class NgrVendas  implements java.io.Serializable {
 
      private int ngrIdVenda;
      private Date ngrDataVenda;
-     private int ngrFkCliente;
-     private int ngrFkFuncionario;
+     private NgrClientes ngrCliente;
+     private NgrFuncionarios ngrFuncionario;
      private double ngrValorTotal;
 
     public NgrVendas() {
@@ -36,11 +36,11 @@ public class NgrVendas  implements java.io.Serializable {
     public NgrVendas(int ngrIdVenda) {
         this.ngrIdVenda = ngrIdVenda;
     }
-    public NgrVendas(int ngrIdVenda, Date ngrDataVenda, int ngrFkCliente, int ngrFkFuncionario, double ngrValorTotal, Set ngrVendaProdutos) {
+    public NgrVendas(int ngrIdVenda, Date ngrDataVenda, NgrClientes ngrFkCliente, NgrFuncionarios ngrFkFuncionario, double ngrValorTotal, Set ngrVendaProdutos) {
        this.ngrIdVenda = ngrIdVenda;
        this.ngrDataVenda = ngrDataVenda;
-       this.ngrFkCliente = ngrFkCliente;
-       this.ngrFkFuncionario = ngrFkFuncionario;
+       this.ngrCliente = ngrFkCliente;
+       this.ngrFuncionario = ngrFkFuncionario;
        this.ngrValorTotal = ngrValorTotal;
     }
    
@@ -68,22 +68,22 @@ public class NgrVendas  implements java.io.Serializable {
 
     
     @Column(name="ngr_fk_Cliente")
-    public int getNgrFkCliente() {
-        return this.ngrFkCliente;
+    public NgrClientes getNgrCliente() {
+        return this.ngrCliente;
     }
     
-    public void setNgrFkCliente(int ngrFkCliente) {
-        this.ngrFkCliente = ngrFkCliente;
+    public void setNgrCliente(NgrClientes ngrCliente) {
+        this.ngrCliente = ngrCliente;
     }
 
     
     @Column(name="ngr_fk_Funcionario")
-    public int getNgrFkFuncionario() {
-        return this.ngrFkFuncionario;
+    public NgrFuncionarios getNgrFuncionario() {
+        return this.ngrFuncionario;
     }
     
-    public void setNgrFkFuncionario(int ngrFkFuncionario) {
-        this.ngrFkFuncionario = ngrFkFuncionario;
+    public void setNgrFuncionario(NgrFuncionarios ngrFuncionario) {
+        this.ngrFuncionario = ngrFuncionario;
     }
 
     

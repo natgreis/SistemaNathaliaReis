@@ -283,18 +283,29 @@ private boolean incluir = true;
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
         // TODO add your handling code here:
-        FuncionariosDAO funcionariosDAO = new FuncionariosDAO();
-  NgrFuncionarios funcionarios = viewBean();
-if (incluir) {
+        
+    String email = jTxtEmail.getText();
+    if (!Util.validarEmail(email)) {
+        Util.mensagem("Email invalido");
+        jTxtEmail.requestFocus();
+        return; // Interrompe o fluxo se for inválido
+    }
+
+    FuncionariosDAO funcionariosDAO = new FuncionariosDAO();
+    NgrFuncionarios funcionarios = viewBean();
+
+    if (incluir) {
         funcionariosDAO.insert(funcionarios);
     } else {
         funcionariosDAO.update(funcionarios);
     }
+
     Util.habilitar(false, jTxtNome, jTxtCodigo, jFmtTel, jFmtCpf, jFmtAdmissao,
-                jTxtEmail, jTxtCargo, jTxtSalario, jChbAtivo, jBtnConfirmar, jBtnCancelar);
+            jTxtEmail, jTxtCargo, jTxtSalario, jChbAtivo, jBtnConfirmar, jBtnCancelar);
     Util.habilitar(true, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
     Util.limpar(jTxtNome, jTxtCodigo, jFmtTel, jFmtCpf, jFmtAdmissao,
-                jTxtEmail, jTxtCargo, jTxtSalario, jChbAtivo);
+            jTxtEmail, jTxtCargo, jTxtSalario, jChbAtivo);
+
 
     }//GEN-LAST:event_jBtnConfirmarActionPerformed
 

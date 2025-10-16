@@ -4,6 +4,10 @@
  */
 package view;
 
+import bean.NgrFuncionarios;
+import dao.FuncionariosDAO;
+import java.util.List;
+
 /**
  *
  * @author u07884727129
@@ -20,7 +24,11 @@ public class JDlgFuncionariosPesquisar extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setTitle("Pesquisar Funcionario");
-        setLocationRelativeTo(null);
+        controllerFuncionarios = new ControllerFuncionarios();
+        FuncionariosDAO funcionariosDAO = new FuncionariosDAO();
+        List lista = (List) funcionariosDAO.listAll();
+        controllerFuncionarios.setList(lista);
+        jTable.setModel(controllerFuncionarios);
 
     }
 
@@ -88,8 +96,9 @@ public class JDlgFuncionariosPesquisar extends javax.swing.JDialog {
 
     private void jBntOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntOkActionPerformed
         // TODO add your handling code here:
-        int linSel = jTable.getSelectedRow();
-        setVisible(false);
+        NgrFuncionarios funcionarios = controllerFuncionarios.getBean(jTable.getSelectedRow());
+    jDlgFuncionarios.beanView(funcionarios);
+    this.setVisible(false);
     }//GEN-LAST:event_jBntOkActionPerformed
 
     /**

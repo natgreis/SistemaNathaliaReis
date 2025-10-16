@@ -1,17 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package view;
+
 import bean.NgrFuncionarios;
 import java.util.List;
+import javax.swing.table.AbstractTableModel;
 
-/**
- *
- * @author u07884727129
- */
-public class ControllerFuncionarios {
+public class ControllerFuncionarios extends AbstractTableModel {
+
     private List NgrFuncionarios;
 
     public void setList(List NgrFuncionarios) {
@@ -22,28 +16,32 @@ public class ControllerFuncionarios {
         return (NgrFuncionarios) NgrFuncionarios.get(rowIndex);
     }
 
+    @Override
     public int getRowCount() {
         return NgrFuncionarios.size();
     }
 
+    @Override
     public int getColumnCount() {
         return 4;
     }
 
+    @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        NgrFuncionarios vendedor = (NgrFuncionarios) NgrFuncionarios.get(rowIndex);
+        NgrFuncionarios funcionarios = (NgrFuncionarios) NgrFuncionarios.get(rowIndex);
         if (columnIndex == 0) {
-            return vendedor.getNgrIdFuncionario();
+            return funcionarios.getNgrIdFuncionario();
         } else if (columnIndex == 1) {
-            return vendedor.getNgrNome();        
+            return funcionarios.getNgrNome();        
         } else if (columnIndex == 2) {
-            return vendedor.getNgrCpf();
+            return funcionarios.getNgrCpf();
         } else if (columnIndex == 3) {
-            return vendedor.getNgrTelefone();
+            return funcionarios.getNgrTelefone();
         }
         return "";
     }
 
+    @Override
     public String getColumnName(int columnIndex) {
         if (columnIndex == 0) {
             return "Código";

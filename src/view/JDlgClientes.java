@@ -370,6 +370,12 @@ private boolean incluir = true;
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
         // TODO add your handling code here:
+        String email = jTxtEmail.getText();
+    if (!Util.validarEmail(email)) {
+        Util.mensagem("Email invalido");
+        jTxtEmail.requestFocus();
+    }
+        
         ClientesDAO clientesDAO = new ClientesDAO();
         NgrClientes cliente = viewBean();
         if (incluir) {

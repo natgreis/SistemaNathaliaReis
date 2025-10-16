@@ -4,6 +4,8 @@
  */
 package view;
 
+import bean.NgrProdutos;
+import dao.ProdutosDAO;
 import tools.Util;
 
 /**
@@ -11,6 +13,8 @@ import tools.Util;
  * @author macbook
  */
 public class JDlgProduto extends javax.swing.JDialog {
+
+    private boolean incluir = true;
 
     /**
      * Creates new form JDlgProduto
@@ -22,7 +26,35 @@ public class JDlgProduto extends javax.swing.JDialog {
         setLocationRelativeTo(null);
         Util.habilitar(false, jTxtNome, jTxtCodigo, jTxtDescricao, jTxtDescricao, jFrmtDataCad,
                 jTxtTamanho, jTxtCor, jTxtCategoria, jTxtPreco, jBtnConfirmar, jBtnCancelar);
+        Util.limpar(jTxtNome, jTxtCodigo, jTxtDescricao, jTxtDescricao, jFrmtDataCad,
+                jTxtTamanho, jTxtCor, jTxtCategoria, jTxtPreco, jBtnConfirmar, jBtnCancelar);
 
+    }
+
+    public void beanView(NgrProdutos produtos) {
+        jTxtCodigo.setText(Util.intToStr(produtos.getNgrIdProduto()));
+        jTxtNome.setText(produtos.getNgrNome());
+        jTxtCategoria.setText(produtos.getNgrCategoria());
+        jTxtDescricao.setText(produtos.getNgrDescricao());
+        jTxtTamanho.setText(produtos.getNgrTamanho());
+        jTxtCor.setText(produtos.getNgrCor());
+        jTxtPreco.setText(Util.doubleToStr(produtos.getNgrPreco()));
+        jFrmtDataCad.setText(Util.dateToStr(produtos.getNgrDataCadastro()));
+
+    }
+
+    public NgrProdutos viewBean() {
+        NgrProdutos produtos = new NgrProdutos();
+
+        produtos.setNgrIdProduto(Util.strToInt(jTxtCodigo.getText()));
+        produtos.setNgrNome(jTxtNome.getText());
+        produtos.setNgrCategoria(jTxtCategoria.getText());
+        produtos.setNgrDescricao(jTxtDescricao.getText());
+        produtos.setNgrTamanho(jTxtTamanho.getText());
+        produtos.setNgrCor(jTxtCor.getText());
+        produtos.setNgrPreco(Util.strToDouble(jTxtPreco.getText()));
+        produtos.setNgrDataCadastro(Util.strToDate(jFrmtDataCad.getText()));
+        return produtos;
     }
 
     /**
@@ -240,8 +272,8 @@ public class JDlgProduto extends javax.swing.JDialog {
         Util.habilitar(true, jTxtNome, jTxtCodigo, jTxtDescricao, jTxtDescricao, jFrmtDataCad,
                 jTxtTamanho, jTxtCor, jTxtCategoria, jTxtPreco, jBtnConfirmar, jBtnCancelar);
         Util.habilitar(false, jBtnAlterar, jBtnExcluir, jBtnIncluir, jBtnPesquisar);
-        Util.limpar(jTxtCodigo, jTxtNome);
-        Util.mensagem("nao implementado");
+        Util.limpar(jTxtNome, jTxtCodigo, jTxtDescricao, jTxtDescricao, jFrmtDataCad,
+                jTxtTamanho, jTxtCor, jTxtCategoria, jTxtPreco, jBtnConfirmar, jBtnCancelar);
 
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
@@ -250,11 +282,21 @@ public class JDlgProduto extends javax.swing.JDialog {
         Util.habilitar(true, jTxtNome, jTxtCodigo, jTxtDescricao, jTxtDescricao, jFrmtDataCad,
                 jTxtTamanho, jTxtCor, jTxtCategoria, jTxtPreco, jBtnConfirmar, jBtnCancelar);
         Util.habilitar(false, jBtnAlterar, jBtnExcluir, jBtnIncluir, jBtnPesquisar);
-        Util.limpar(jTxtCodigo, jTxtNome);
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
-        int cod = Util.strToInt(jTxtCodigo.getText());
+        ProdutosDAO produtosDAO = new ProdutosDAO();
+        NgrProdutos produto = viewBean();
+        if (incluir) {
+            produtosDAO.insert(produto);
+        } else {
+            produtosDAO.update(produto);
+        }
+        Util.habilitar(false, jTxtNome, jTxtCodigo, jTxtDescricao, jTxtDescricao, jFrmtDataCad,
+                jTxtTamanho, jTxtCor, jTxtCategoria, jTxtPreco, jBtnConfirmar, jBtnCancelar);
+        Util.habilitar(true, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
+        Util.limpar(jTxtNome, jTxtCodigo, jTxtDescricao, jTxtDescricao, jFrmtDataCad,
+                jTxtTamanho, jTxtCor, jTxtCategoria, jTxtPreco);
 
     }//GEN-LAST:event_jBtnConfirmarActionPerformed
 
@@ -263,12 +305,19 @@ public class JDlgProduto extends javax.swing.JDialog {
         Util.habilitar(false, jTxtNome, jTxtCodigo, jTxtDescricao, jTxtDescricao, jFrmtDataCad,
                 jTxtTamanho, jTxtCor, jTxtCategoria, jTxtPreco, jBtnConfirmar, jBtnCancelar);
         Util.habilitar(true, jBtnAlterar, jBtnExcluir, jBtnIncluir, jBtnPesquisar);
-        Util.limpar(jTxtCodigo, jTxtNome);
+        Util.limpar(jTxtNome, jTxtCodigo, jTxtDescricao, jTxtDescricao, jFrmtDataCad,
+                jTxtTamanho, jTxtCor, jTxtCategoria, jTxtPreco);
     }//GEN-LAST:event_jBtnCancelarActionPerformed
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
         // TODO add your handling code here:  
-        Util.pergunta("Deseja Excluir?");
+        if (Util.pergunta("Deseja Excluir?")) {
+            ProdutosDAO produtosDAO = new ProdutosDAO();
+            produtosDAO.delete(viewBean());
+           Util.limpar(jTxtNome, jTxtCodigo, jTxtDescricao, jTxtDescricao, jFrmtDataCad,
+                jTxtTamanho, jTxtCor, jTxtCategoria, jTxtPreco);
+            Util.mensagem("Produto excluído!");
+        }
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
     private void jBtnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPesquisarActionPerformed

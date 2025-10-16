@@ -4,6 +4,10 @@
  */
 package view;
 
+
+import bean.NgrVendas;
+import dao.VendasDAO;
+import java.util.List;
 /**
  *
  * @author u07884727129
