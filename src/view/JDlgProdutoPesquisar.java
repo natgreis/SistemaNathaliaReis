@@ -7,6 +7,7 @@ package view;
 import bean.NgrProdutos;
 import dao.ProdutosDAO;
 import java.util.List;
+import tools.Util;
 
 /**
  *
@@ -62,6 +63,11 @@ public class JDlgProdutoPesquisar extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable);
 
         jBntOK.setText("OK");
@@ -96,10 +102,21 @@ public class JDlgProdutoPesquisar extends javax.swing.JDialog {
 
     private void jBntOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntOKActionPerformed
         // TODO add your handling code here:
+        if (jTable.getSelectedRow() == -1) {
+            Util.mensagem("Nenhum registro foi selecionada. Favor selecionar um registro.");
+        } else {
         NgrProdutos produtos = controllerProdutos.getBean(jTable.getSelectedRow());
         jDlgProduto.beanView(produtos);
         this.setVisible(false);
+        }
     }//GEN-LAST:event_jBntOKActionPerformed
+
+    private void jTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableMouseClicked
+        // TODO add your handling code here:
+         if (evt.getClickCount() == 2) {
+            jBntOKActionPerformed(null);
+        }
+    }//GEN-LAST:event_jTableMouseClicked
 
     /**
      * @param args the command line arguments

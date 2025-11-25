@@ -42,6 +42,16 @@ public class UsuariosDAO extends AbstractDAO{
         session.delete(object);
         session.getTransaction().commit();        
     }
+    
+    public NgrUsuarios validar(String apelido, String senha) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(NgrUsuarios.class);
+        criteria.add(Restrictions.eq("ngrApelido", apelido));
+        criteria.add(Restrictions.eq("ngrSenha", senha));
+        NgrUsuarios usuario = (NgrUsuarios) criteria.uniqueResult();
+        session.getTransaction().commit();
+        return usuario;
+    }
 
     @Override
     public Object list(int codigo) {

@@ -6,6 +6,7 @@ package view;
 import bean.NgrClientes;
 import dao.ClientesDAO;
 import java.util.List;
+import tools.Util;
 /**
  *
  * @author u07884727129
@@ -60,12 +61,22 @@ public class JDlgClientesPesquisar extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable);
 
         jBntOk.setText("OK");
         jBntOk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBntOkActionPerformed(evt);
+            }
+        });
+        jBntOk.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jBntOkKeyReleased(evt);
             }
         });
 
@@ -95,10 +106,25 @@ public class JDlgClientesPesquisar extends javax.swing.JDialog {
 
     private void jBntOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntOkActionPerformed
         // TODO add your handling code here:
+         if (jTable.getSelectedRow() == -1) {
+            Util.mensagem("Nenhum registro foi selecionada. Favor selecionar um registro.");
+        } else {
         NgrClientes clientes = controllerClientes.getBean(jTable.getSelectedRow());
         jDlgClientes.beanView(clientes);
         this.setVisible(false);
+         }
     }//GEN-LAST:event_jBntOkActionPerformed
+
+    private void jTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableMouseClicked
+        // TODO add your handling code here:
+        if (evt.getClickCount() == 2) {
+            jBntOkActionPerformed(null);
+        }
+    }//GEN-LAST:event_jTableMouseClicked
+
+    private void jBntOkKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jBntOkKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBntOkKeyReleased
 
     /**
      * @param args the command line arguments

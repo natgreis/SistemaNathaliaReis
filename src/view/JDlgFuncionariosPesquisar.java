@@ -7,6 +7,7 @@ package view;
 import bean.NgrFuncionarios;
 import dao.FuncionariosDAO;
 import java.util.List;
+import tools.Util;
 
 /**
  *
@@ -63,6 +64,11 @@ public class JDlgFuncionariosPesquisar extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable);
 
         jBntOk.setText("OK");
@@ -97,10 +103,21 @@ public class JDlgFuncionariosPesquisar extends javax.swing.JDialog {
 
     private void jBntOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntOkActionPerformed
         // TODO add your handling code here:
+        if (jTable.getSelectedRow() == -1) {
+            Util.mensagem("Nenhum registro foi selecionada. Favor selecionar um registro.");
+        } else {
         NgrFuncionarios funcionarios = controllerFuncionarios.getBean(jTable.getSelectedRow());
     jDlgFuncionarios.beanView(funcionarios);
     this.setVisible(false);
+        }
     }//GEN-LAST:event_jBntOkActionPerformed
+
+    private void jTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableMouseClicked
+        // TODO add your handling code here:
+        if (evt.getClickCount() == 2) {
+            jBntOkActionPerformed(null);
+        }
+    }//GEN-LAST:event_jTableMouseClicked
 
     /**
      * @param args the command line arguments

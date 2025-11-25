@@ -65,6 +65,12 @@ JDlgVendas jDlgVendas;
 
         jLabel4.setText("Quantidade");
 
+        jTxtQuantidade.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTxtQuantidadeKeyReleased(evt);
+            }
+        });
+
         jLabel5.setText("Preco Unitario");
 
         jLabel6.setText("Preco Total");
@@ -73,6 +79,11 @@ JDlgVendas jDlgVendas;
         jCboProd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCboProdActionPerformed(evt);
+            }
+        });
+        jCboProd.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jCboProdKeyReleased(evt);
             }
         });
 
@@ -168,6 +179,21 @@ JDlgVendas jDlgVendas;
         int quant = Util.strToInt(jTxtQuantidade.getText());
         jTxtTotal.setText(Util.doubleToStr( quant * produtos.getNgrPreco()));
     }//GEN-LAST:event_jCboProdActionPerformed
+
+    private void jCboProdKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jCboProdKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCboProdKeyReleased
+
+    private void jTxtQuantidadeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxtQuantidadeKeyReleased
+        // TODO add your handling code here:
+        if(jTxtQuantidade.getText().isEmpty() == false){
+        NgrProdutos produtos = (NgrProdutos) jCboProd.getSelectedItem();
+        int quant = Util.strToInt(jTxtQuantidade.getText());
+        jTxtTotal.setText(Util.doubleToStr( quant * produtos.getNgrPreco()));
+       } else {
+           Util.limpar(jTxtTotal);
+       }
+    }//GEN-LAST:event_jTxtQuantidadeKeyReleased
 
     /**
      * @param args the command line arguments
