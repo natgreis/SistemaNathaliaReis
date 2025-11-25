@@ -309,10 +309,10 @@ public class JDlgUsuarios extends javax.swing.JDialog {
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
         // TODO add your handling code here:
-        Util.habilitar(true, jTxtCodigo, jTxtNome, jTxtApelido, jFmtCpf,
+        Util.habilitar(true, jTxtNome, jTxtApelido, jFmtCpf,
                 jFmtDataNascimento, jPwdSenha, jCboNivel, jChbAtivo,
                 jBtnConfirmar, jBtnCancelar);
-        Util.habilitar(false, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
+        Util.habilitar(false, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar, jTxtCodigo);
         incluir = false;
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 

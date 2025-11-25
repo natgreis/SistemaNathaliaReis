@@ -19,7 +19,7 @@ private boolean incluir = true;
      */
     public JDlgFuncionarios(java.awt.Frame parent, boolean modal) {
         initComponents();   
-        setTitle("Cadastro de Usuários");
+        setTitle("Cadastro de Funcionarios");
         setLocationRelativeTo(null);
         Util.habilitar(false,jTxtNome, jTxtCodigo, jFmtTel, jFmtCpf, jFmtAdmissao,
                 jTxtEmail, jTxtCargo, jTxtSalario, jChbAtivo, jBtnConfirmar, jBtnCancelar);
@@ -282,9 +282,10 @@ private boolean incluir = true;
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
         // TODO add your handling code here:
-        Util.habilitar(true, jTxtNome, jTxtCodigo, jFmtTel, jFmtCpf, jFmtAdmissao,
+        Util.habilitar(true, jTxtNome, jFmtTel, jFmtCpf, jFmtAdmissao,
                 jTxtEmail, jTxtCargo, jTxtSalario, jChbAtivo, jBtnConfirmar, jBtnCancelar);
-    Util.habilitar(false, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
+    Util.habilitar(false, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar, jTxtCodigo);
+    incluir = false;
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
@@ -327,7 +328,7 @@ private boolean incluir = true;
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
         // TODO add your handling code here:  
-        if (Util.pergunta("Deseja Excluir?")) {
+        if (Util.pergunta("Deseja Excluir?") == true) {
         FuncionariosDAO funcionariosDAO = new FuncionariosDAO();
         funcionariosDAO.delete(viewBean());
         Util.limpar(jTxtNome, jTxtCodigo, jFmtTel, jFmtCpf, jFmtAdmissao,

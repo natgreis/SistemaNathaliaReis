@@ -279,9 +279,10 @@ public class JDlgProduto extends javax.swing.JDialog {
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
         // TODO add your handling code here:
-        Util.habilitar(true, jTxtNome, jTxtCodigo, jTxtDescricao, jTxtDescricao, jFrmtDataCad,
+        Util.habilitar(true, jTxtNome, jTxtDescricao, jTxtDescricao, jFrmtDataCad,
                 jTxtTamanho, jTxtCor, jTxtCategoria, jTxtPreco, jBtnConfirmar, jBtnCancelar);
-        Util.habilitar(false, jBtnAlterar, jBtnExcluir, jBtnIncluir, jBtnPesquisar);
+        Util.habilitar(false, jBtnAlterar, jBtnExcluir, jBtnIncluir, jBtnPesquisar, jTxtCodigo);
+        incluir = false;
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
@@ -311,7 +312,7 @@ public class JDlgProduto extends javax.swing.JDialog {
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
         // TODO add your handling code here:  
-        if (Util.pergunta("Deseja Excluir?")) {
+        if (Util.pergunta("Deseja Excluir?")== true) {
             ProdutosDAO produtosDAO = new ProdutosDAO();
             produtosDAO.delete(viewBean());
            Util.limpar(jTxtNome, jTxtCodigo, jTxtDescricao, jTxtDescricao, jFrmtDataCad,
