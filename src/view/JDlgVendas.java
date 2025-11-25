@@ -412,13 +412,13 @@ public class JDlgVendas extends javax.swing.JDialog {
 
     private void jBntAlterarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntAlterarProdActionPerformed
         // TODO add your handling code here:
-        JDlgVendaProduto jDlgVendasProdutos = new JDlgVendaProduto(null, true);
+        JDlgVendasProdutos jDlgVendasProdutos = new JDlgVendasProdutos(null, true);
         jDlgVendasProdutos.setVisible(true);
     }//GEN-LAST:event_jBntAlterarProdActionPerformed
 
     private void jBntIncluirProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntIncluirProdActionPerformed
         // TODO add your handling code here:
-        JDlgVendaProduto jDlgVendasProdutos = new JDlgVendaProduto(null, true);
+        JDlgVendasProdutos jDlgVendasProdutos = new JDlgVendasProdutos(null, true);
         jDlgVendasProdutos.setTelaPai(this);
         jDlgVendasProdutos.setVisible(true);
     }//GEN-LAST:event_jBntIncluirProdActionPerformed
