@@ -37,14 +37,9 @@ public class NgrProdutos  implements java.io.Serializable {
     }
 
 	
-    public NgrProdutos(int ngrIdProduto, String ngrNome, String ngrDescricao, String ngrTamanho, String ngrCor, double ngrPreco, String ngrCategoria) {
+    public NgrProdutos(int ngrIdProduto) {
         this.ngrIdProduto = ngrIdProduto;
-        this.ngrNome = ngrNome;
-        this.ngrDescricao = ngrDescricao;
-        this.ngrTamanho = ngrTamanho;
-        this.ngrCor = ngrCor;
-        this.ngrPreco = ngrPreco;
-        this.ngrCategoria = ngrCategoria;
+       
     }
     public NgrProdutos(int ngrIdProduto, String ngrNome, String ngrDescricao, String ngrTamanho, String ngrCor, double ngrPreco, String ngrCategoria, Date ngrDataCadastro, Set ngrVendaProdutos) {
        this.ngrIdProduto = ngrIdProduto;
@@ -68,6 +63,7 @@ public class NgrProdutos  implements java.io.Serializable {
     public void setNgrIdProduto(int ngrIdProduto) {
         this.ngrIdProduto = ngrIdProduto;
     }
+   
 
     
     @Column(name="ngr_nome", nullable=false, length=100)
@@ -138,9 +134,21 @@ public class NgrProdutos  implements java.io.Serializable {
     public void setNgrDataCadastro(Date ngrDataCadastro) {
         this.ngrDataCadastro = ngrDataCadastro;
     }
+@Override
+    public String toString() {
+        return this.ngrIdProduto + " - " + this.ngrNome;
+    }
 
-
-
+ @Override
+    public boolean equals(Object object) {
+        if (object instanceof NgrProdutos) {
+            NgrProdutos produtos = (NgrProdutos) object;
+            if (produtos.getNgrIdProduto() == this.getNgrIdProduto()) {
+                return true;
+            }
+        }
+        return false;
+    }
 
 
 }

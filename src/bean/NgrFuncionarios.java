@@ -141,7 +141,21 @@ public class NgrFuncionarios  implements java.io.Serializable {
         this.ngrAtivo = ngrAtivo;
     }
 
+ @Override
+    public String toString() {
+        return this.ngrIdFuncionario + " - " + this.ngrNome;
+    }
 
+    @Override
+    public boolean equals(Object object) {
+        if (object instanceof NgrFuncionarios) {
+            NgrFuncionarios vendedor = (NgrFuncionarios) object;
+            if (vendedor.getNgrIdFuncionario()== this.getNgrIdFuncionario()) {
+                return true;
+            }
+        }
+        return false;
+    }
 
 
 }

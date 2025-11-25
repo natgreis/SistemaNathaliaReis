@@ -212,7 +212,10 @@ public class NgrClientes  implements java.io.Serializable {
     public void setNgrObservacoes(String ngrObservacoes) {
         this.ngrObservacoes = ngrObservacoes;
     }
-
+     @Override
+    public String toString() {
+        return this.ngrIdCliente + " - " + this.ngrNome;
+    }
 
 
 

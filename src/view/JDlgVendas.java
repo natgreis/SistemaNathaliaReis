@@ -107,7 +107,7 @@ public class JDlgVendas extends javax.swing.JDialog {
         jBtnPesquisar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable = new javax.swing.JTable();
-        jCboCliente = new javax.swing.JComboBox<>();
+        jCboCliente = new javax.swing.JComboBox<NgrClientes>();
         jCboFuncionario = new javax.swing.JComboBox<>();
         jBntIncluirProd = new javax.swing.JButton();
         jBntAlterarProd = new javax.swing.JButton();
@@ -277,7 +277,7 @@ public class JDlgVendas extends javax.swing.JDialog {
                         .addComponent(jBtnCancelar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jBtnPesquisar)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
