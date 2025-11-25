@@ -4,12 +4,18 @@
  */
 package view;
 
+import bean.NgrVendaProduto;
+import bean.NgrProdutos;
+import dao.ProdutosDAO;
+import java.util.List;
+import tools.Util;
+
 /**
  *
  * @author macbook
  */
 public class JDlgVendaProduto extends javax.swing.JDialog {
-
+JDlgVendas jDlgVendas;
     /**
      * Creates new form JDlgVendaProduto
      */
@@ -18,7 +24,20 @@ public class JDlgVendaProduto extends javax.swing.JDialog {
         initComponents();
         setTitle("Vendas Produtos");
         setLocationRelativeTo(null);
+        jTxtQuantidade.setText("1");
+        ProdutosDAO produtosDAO = new ProdutosDAO();
+        List lista = (List) produtosDAO.listAll();
+         for (Object object : lista) {
+            jCboProd.addItem((NgrProdutos) object);
+        }
+        Util.habilitar(false, jTxtPrecoUnitario, jTxtTotal);
+       
     }
+    
+    public void setTelaPai(JDlgVendas jDlgVendas) {
+        this.jDlgVendas = jDlgVendas;
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -36,7 +55,7 @@ public class JDlgVendaProduto extends javax.swing.JDialog {
         jTxtPrecoUnitario = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jTxtTotal = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jCboProd = new javax.swing.JComboBox<NgrProdutos>();
         jBntCancelar = new javax.swing.JButton();
         jBntOk = new javax.swing.JButton();
 
@@ -50,7 +69,12 @@ public class JDlgVendaProduto extends javax.swing.JDialog {
 
         jLabel6.setText("Preco Total");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jCboProd.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jCboProd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCboProdActionPerformed(evt);
+            }
+        });
 
         jBntCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar.png"))); // NOI18N
         jBntCancelar.setText("Cancelar");
@@ -76,7 +100,7 @@ public class JDlgVendaProduto extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel3)
-                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jCboProd, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jBntOk)
@@ -101,7 +125,7 @@ public class JDlgVendaProduto extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jCboProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -124,6 +148,11 @@ public class JDlgVendaProduto extends javax.swing.JDialog {
 
     private void jBntOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntOkActionPerformed
         // TODO add your handling code here:
+        NgrVendaProduto vendasProdutos = new NgrVendaProduto();
+        vendasProdutos.setNgrProdutos((NgrProdutos) jCboProd.getSelectedItem());
+        vendasProdutos.setNgrQuantidade(Util.strToInt(jTxtQuantidade.getText()) );
+        vendasProdutos.setNgrPrecoUnitario(Util.strToDouble(jTxtPrecoUnitario.getText()) );                
+        jDlgVendas.controllerVendProd.addBean(vendasProdutos);
         setVisible(false);
     }//GEN-LAST:event_jBntOkActionPerformed
 
@@ -131,6 +160,14 @@ public class JDlgVendaProduto extends javax.swing.JDialog {
         // TODO add your handling code here:
         setVisible(false);
     }//GEN-LAST:event_jBntCancelarActionPerformed
+
+    private void jCboProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCboProdActionPerformed
+        // TODO add your handling code here:
+        NgrProdutos produtos = (NgrProdutos) jCboProd.getSelectedItem();
+        jTxtPrecoUnitario.setText(Util.doubleToStr(produtos.getNgrPreco()));
+        int quant = Util.strToInt(jTxtQuantidade.getText());
+        jTxtTotal.setText(Util.doubleToStr( quant * produtos.getNgrPreco()));
+    }//GEN-LAST:event_jCboProdActionPerformed
 
     /**
      * @param args the command line arguments
@@ -177,7 +214,7 @@ public class JDlgVendaProduto extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBntCancelar;
     private javax.swing.JButton jBntOk;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<NgrProdutos> jCboProd;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

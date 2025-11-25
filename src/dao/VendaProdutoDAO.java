@@ -5,6 +5,7 @@
  */
 package dao;
 
+import bean.NgrVendas;
 import bean.NgrVendaProduto;
 import java.util.List;
 import org.hibernate.Criteria;
@@ -42,6 +43,15 @@ public class VendaProdutoDAO extends AbstractDAO{
         session.delete(object);
         session.getTransaction().commit();        
     }
+    
+     public Object listProdutos(NgrVendas pedidos) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(NgrVendaProduto.class);
+        criteria.add(Restrictions.eq("pedidos", pedidos));
+        List lista = criteria.list();
+        session.getTransaction().commit();        
+        return lista;
+     }
 
     @Override
     public Object list(int codigo) {

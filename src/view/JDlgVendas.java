@@ -6,11 +6,14 @@ package view;
 
 import bean.NgrClientes;
 import bean.NgrVendas;
+import bean.NgrVendaProduto;
 import bean.NgrFuncionarios;
 import dao.ClientesDAO;
 import dao.VendasDAO;
+import dao.VendaProdutoDAO;
 import dao.FuncionariosDAO;
 import java.util.List;
+import java.util.ArrayList;
 import tools.Util;
 
 /**
@@ -18,7 +21,10 @@ import tools.Util;
  * @author macbook
  */
 public class JDlgVendas extends javax.swing.JDialog {
-private boolean incluir = true;
+
+    ControllerVendaProduto controllerVendProd;
+    private boolean incluir = true;
+
     /**
      * Creates new form JDlgVendas
      */
@@ -30,37 +36,47 @@ private boolean incluir = true;
         ClientesDAO clientesDAO = new ClientesDAO();
         List lista = (List) clientesDAO.listAll();
         for (int i = 0; i < lista.size(); i++) {
-            jCboCliente.addItem((NgrClientes) lista.get(i));            
+            jCboCliente.addItem((NgrClientes) lista.get(i));
         }
 
-        
         FuncionariosDAO funcionariosDAO = new FuncionariosDAO();
         List listaFuncionarios = (List) funcionariosDAO.listAll();
-        for (int i = 0; i < listaFuncionarios.size(); i++) {
-            jCboFuncionario.addItem((NgrFuncionarios) listaFuncionarios.get(i));            
+        for (Object object : listaFuncionarios) {
+            jCboFuncionario.addItem((NgrFuncionarios) object);
         }
-        
+        controllerVendProd = new ControllerVendaProduto();
+        controllerVendProd.setList(new ArrayList());
+        jTable.setModel(controllerVendProd);
+
         Util.limpar(jFmtDataVenda, jTxtCodigo, jCboCliente, jCboFuncionario, jTxtTotal,
                 jTxtPagamento, jTxtObservacoes);
         Util.habilitar(false, jFmtDataVenda, jTxtCodigo, jCboCliente, jCboFuncionario, jTxtTotal,
-             jTxtPagamento, jTxtObservacoes, jBtnConfirmar, jBtnCancelar);
+                jTxtPagamento, jTxtObservacoes, jBtnConfirmar, jBtnCancelar);
 
     }
-    
+
     public NgrVendas viewBean() {
-    NgrVendas venda = new NgrVendas();
+        NgrVendas venda = new NgrVendas();
 
-    venda.setNgrIdVenda(Util.strToInt(jTxtCodigo.getText()));
-    venda.setNgrDataVenda(Util.strToDate(jFmtDataVenda.getText()));
-    venda.setNgrValorTotal(Util.strToDouble(jTxtTotal.getText()));
-    NgrClientes clienteSelecionado = (NgrClientes) jCboCliente.getSelectedItem();
-    venda.setNgrCliente(clienteSelecionado);
-    NgrFuncionarios funcionarioSelecionado = (NgrFuncionarios) jCboFuncionario.getSelectedItem();
-    venda.setNgrFuncionario(funcionarioSelecionado);
-
-    return venda;
-}
-
+        venda.setNgrIdVenda(Util.strToInt(jTxtCodigo.getText()));
+        venda.setNgrDataVenda(Util.strToDate(jFmtDataVenda.getText()));
+        venda.setNgrValorTotal(Util.strToDouble(jTxtTotal.getText()));
+        venda.setNgrCliente((NgrClientes) jCboCliente.getSelectedItem());
+        venda.setNgrFuncionario((NgrFuncionarios) jCboFuncionario.getSelectedItem());
+        return venda;
+    }
+    
+    public void beanView(NgrVendas vendas) {
+        jTxtCodigo.setText(Util.intToStr(vendas.getNgrIdVenda()));
+        jFmtDataVenda.setText(Util.dateToStr(vendas.getNgrDataVenda()));
+        jTxtTotal.setText(Util.doubleToStr(vendas.getNgrValorTotal()));
+        jCboCliente.setSelectedItem(vendas.getNgrCliente());
+        jCboFuncionario.setSelectedItem(vendas.getNgrFuncionario());
+        
+        VendaProdutoDAO vendaProdutoDAO = new VendaProdutoDAO();
+        List lista = (List) vendaProdutoDAO.listProdutos(vendas);
+        controllerVendProd.setList(lista);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -314,7 +330,8 @@ private boolean incluir = true;
         Util.habilitar(true, jFmtDataVenda, jTxtCodigo, jCboCliente, jCboFuncionario, jTxtTotal,
                 jTxtPagamento, jTxtObservacoes, jBtnConfirmar, jBtnCancelar);
         Util.habilitar(false, jBtnAlterar, jBtnExcluir, jBtnIncluir, jBtnPesquisar);
-        Util.limpar(jFmtDataVenda, jTxtCodigo, jTxtTotal,jTxtPagamento, jTxtObservacoes);
+        Util.limpar(jFmtDataVenda, jTxtCodigo, jTxtTotal, jTxtPagamento, jTxtObservacoes, jCboCliente, jCboFuncionario);
+        controllerVendProd.setList(new ArrayList());
         incluir = true;
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
@@ -323,24 +340,31 @@ private boolean incluir = true;
         Util.habilitar(true, jFmtDataVenda, jTxtCodigo, jCboCliente, jCboFuncionario, jTxtTotal,
                 jTxtPagamento, jTxtObservacoes, jBtnConfirmar, jBtnCancelar);
         Util.habilitar(false, jBtnAlterar, jBtnExcluir, jBtnIncluir, jBtnPesquisar);
+        controllerVendProd.setList(new ArrayList());
         incluir = false;
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
         // TODO add your handling code here:
         VendasDAO vendasDAO = new VendasDAO();
-    NgrVendas venda = viewBean();
-    
-    if (incluir) {
-        vendasDAO.insert(venda);
-    } else {
-        vendasDAO.update(venda);
-    }
+        VendaProdutoDAO vendaProdutoDAO = new VendaProdutoDAO();
+        NgrVendas venda = viewBean();
 
-    Util.habilitar(false, jFmtDataVenda, jTxtCodigo, jCboCliente, jCboFuncionario, jTxtTotal,
+        if (incluir == true) {
+            vendasDAO.insert(venda);
+            for (int ind = 0; ind < jTable.getRowCount(); ind++) {
+                NgrVendaProduto vendasProdutos = controllerVendProd.getBean(ind);
+                vendasProdutos.setNgrVendas(venda);
+                vendaProdutoDAO.insert(vendasProdutos);
+            }
+        } else {
+            vendasDAO.update(venda);
+        }
+
+        Util.habilitar(false, jFmtDataVenda, jTxtCodigo, jCboCliente, jCboFuncionario, jTxtTotal,
                 jTxtPagamento, jTxtObservacoes, jBtnConfirmar, jBtnCancelar);
-    Util.habilitar(true, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
-    Util.limpar(jFmtDataVenda, jTxtCodigo, jTxtTotal,jTxtPagamento, jTxtObservacoes);
+        Util.habilitar(true, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
+        Util.limpar(jFmtDataVenda, jTxtCodigo, jTxtTotal, jTxtPagamento, jTxtObservacoes, jCboCliente, jCboFuncionario);
     }//GEN-LAST:event_jBtnConfirmarActionPerformed
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
@@ -348,24 +372,41 @@ private boolean incluir = true;
         Util.habilitar(false, jFmtDataVenda, jTxtCodigo, jCboCliente, jCboFuncionario, jTxtTotal,
                 jTxtPagamento, jTxtObservacoes, jBtnConfirmar, jBtnCancelar);
         Util.habilitar(true, jBtnAlterar, jBtnExcluir, jBtnIncluir, jBtnPesquisar);
+        Util.limpar(jFmtDataVenda, jTxtCodigo, jTxtTotal, jTxtPagamento, jTxtObservacoes, jCboCliente, jCboFuncionario);
     }//GEN-LAST:event_jBtnCancelarActionPerformed
 
     private void jBtnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPesquisarActionPerformed
         // TODO add your handling code here:
         JDlgVendasPesquisar jDlgVendasPesquisar = new JDlgVendasPesquisar(null, true);
-        jDlgVendasPesquisar.setTelaPai((this));
+        jDlgVendasPesquisar.setTelaPai(this);
         jDlgVendasPesquisar.setVisible(true);
     }//GEN-LAST:event_jBtnPesquisarActionPerformed
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
         // TODO add your handling code here:
-        Util.pergunta("Deseja Excluir?");
+        if (Util.pergunta("Deseja excluir ?") == true) {
+            VendasDAO vendasDAO = new VendasDAO();
+            VendaProdutoDAO vendaProdutosDAO = new VendaProdutoDAO();
+
+            for (int ind = 0; ind < jTable.getRowCount(); ind++) {
+                NgrVendaProduto vendasProdutos = controllerVendProd.getBean(ind);
+                vendaProdutosDAO.delete(vendasProdutos);
+            }
+            vendasDAO.delete(viewBean());
+        }
+        
+        Util.limpar(jFmtDataVenda, jTxtCodigo, jTxtTotal, jTxtPagamento, jTxtObservacoes, jCboCliente, jCboFuncionario);
+        controllerVendProd.setList(new ArrayList());
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
     private void jBntExcluirProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntExcluirProdActionPerformed
         // TODO add your handling code here:
-        if (Util.pergunta("Deseja excluir o produto ?")== true) {
-            
+         if (jTable.getSelectedRow() == -1) {
+            Util.mensagem("Então diva, precisa selecionar uma linha.");
+        } else {
+            if (Util.pergunta("Deseja excluir o produto?") == true) {
+                controllerVendProd.removeBean(jTable.getSelectedRow());
+            }
         }
     }//GEN-LAST:event_jBntExcluirProdActionPerformed
 
@@ -378,6 +419,7 @@ private boolean incluir = true;
     private void jBntIncluirProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntIncluirProdActionPerformed
         // TODO add your handling code here:
         JDlgVendaProduto jDlgVendasProdutos = new JDlgVendaProduto(null, true);
+        jDlgVendasProdutos.setTelaPai(this);
         jDlgVendasProdutos.setVisible(true);
     }//GEN-LAST:event_jBntIncluirProdActionPerformed
 
