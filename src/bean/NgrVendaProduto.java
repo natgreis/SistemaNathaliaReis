@@ -1,7 +1,8 @@
 package bean;
-// Generated 13/10/2025 15:50:47 by Hibernate Tools 4.3.1
+// Generated 25/11/2025 15:50:25 by Hibernate Tools 4.3.1
 
 
+import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -23,8 +24,8 @@ public class NgrVendaProduto  implements java.io.Serializable {
      private int ngrIdVendaProduto;
      private NgrProdutos ngrProdutos;
      private NgrVendas ngrVendas;
-     private double ngrPrecoUnitario;
-     private int ngrQuantidade;
+     private BigDecimal ngrPrecoUnitario;
+     private Integer ngrQuantidade;
 
     public NgrVendaProduto() {
     }
@@ -33,7 +34,7 @@ public class NgrVendaProduto  implements java.io.Serializable {
     public NgrVendaProduto(int ngrIdVendaProduto) {
         this.ngrIdVendaProduto = ngrIdVendaProduto;
     }
-    public NgrVendaProduto(int ngrIdVendaProduto, NgrProdutos ngrProdutos, NgrVendas ngrVendas, double ngrPrecoUnitario, int ngrQuantidade) {
+    public NgrVendaProduto(int ngrIdVendaProduto, NgrProdutos ngrProdutos, NgrVendas ngrVendas, BigDecimal ngrPrecoUnitario, Integer ngrQuantidade) {
        this.ngrIdVendaProduto = ngrIdVendaProduto;
        this.ngrProdutos = ngrProdutos;
        this.ngrVendas = ngrVendas;
@@ -75,21 +76,21 @@ public class NgrVendaProduto  implements java.io.Serializable {
 
     
     @Column(name="ngr_precoUnitario", precision=10)
-    public double getNgrPrecoUnitario() {
+    public BigDecimal getNgrPrecoUnitario() {
         return this.ngrPrecoUnitario;
     }
     
-    public void setNgrPrecoUnitario(double ngrPrecoUnitario) {
+    public void setNgrPrecoUnitario(BigDecimal ngrPrecoUnitario) {
         this.ngrPrecoUnitario = ngrPrecoUnitario;
     }
 
     
     @Column(name="ngr_quantidade")
-    public int getNgrQuantidade() {
+    public Integer getNgrQuantidade() {
         return this.ngrQuantidade;
     }
     
-    public void setNgrQuantidade(int ngrQuantidade) {
+    public void setNgrQuantidade(Integer ngrQuantidade) {
         this.ngrQuantidade = ngrQuantidade;
     }
 

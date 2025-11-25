@@ -1,5 +1,5 @@
 package bean;
-// Generated 13/10/2025 15:50:47 by Hibernate Tools 4.3.1
+// Generated 25/11/2025 15:50:25 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -212,10 +212,7 @@ public class NgrClientes  implements java.io.Serializable {
     public void setNgrObservacoes(String ngrObservacoes) {
         this.ngrObservacoes = ngrObservacoes;
     }
-     @Override
-    public String toString() {
-        return this.ngrIdCliente + " - " + this.ngrNome;
-    }
+
 
 
 

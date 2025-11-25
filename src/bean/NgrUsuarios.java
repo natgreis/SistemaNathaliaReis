@@ -1,5 +1,5 @@
 package bean;
-// Generated 13/10/2025 15:50:47 by Hibernate Tools 4.3.1
+// Generated 25/11/2025 15:50:25 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -26,7 +26,7 @@ public class NgrUsuarios  implements java.io.Serializable {
      private String ngrCpf;
      private Date ngrDataNascimento;
      private String ngrSenha;
-     private int ngrNivel;
+     private Integer ngrNivel;
      private String ngrAtivo;
 
     public NgrUsuarios() {
@@ -36,7 +36,7 @@ public class NgrUsuarios  implements java.io.Serializable {
     public NgrUsuarios(int ngrIdUsuarios) {
         this.ngrIdUsuarios = ngrIdUsuarios;
     }
-    public NgrUsuarios(int ngrIdUsuarios, String ngrNome, String ngrApelido, String ngrCpf, Date ngrDataNascimento, String ngrSenha, int ngrNivel, String ngrAtivo) {
+    public NgrUsuarios(int ngrIdUsuarios, String ngrNome, String ngrApelido, String ngrCpf, Date ngrDataNascimento, String ngrSenha, Integer ngrNivel, String ngrAtivo) {
        this.ngrIdUsuarios = ngrIdUsuarios;
        this.ngrNome = ngrNome;
        this.ngrApelido = ngrApelido;
@@ -111,11 +111,11 @@ public class NgrUsuarios  implements java.io.Serializable {
 
     
     @Column(name="ngr_nivel")
-    public int getNgrNivel() {
+    public Integer getNgrNivel() {
         return this.ngrNivel;
     }
     
-    public void setNgrNivel(int ngrNivel) {
+    public void setNgrNivel(Integer ngrNivel) {
         this.ngrNivel = ngrNivel;
     }
 

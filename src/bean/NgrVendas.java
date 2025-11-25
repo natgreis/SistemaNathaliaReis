@@ -1,8 +1,10 @@
 package bean;
-// Generated 13/10/2025 15:50:47 by Hibernate Tools 4.3.1
+// Generated 25/11/2025 15:50:25 by Hibernate Tools 4.3.1
+
 
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,9 +27,10 @@ public class NgrVendas  implements java.io.Serializable {
 
      private int ngrIdVenda;
      private Date ngrDataVenda;
-     private NgrClientes ngrCliente;
-     private NgrFuncionarios ngrFuncionario;
+     private int ngrFkCliente;
+     private int ngrFkFuncionario;
      private double ngrValorTotal;
+     private Set ngrVendaProdutos = new HashSet(0);
 
     public NgrVendas() {
     }
@@ -36,12 +39,13 @@ public class NgrVendas  implements java.io.Serializable {
     public NgrVendas(int ngrIdVenda) {
         this.ngrIdVenda = ngrIdVenda;
     }
-    public NgrVendas(int ngrIdVenda, Date ngrDataVenda, NgrClientes ngrFkCliente, NgrFuncionarios ngrFkFuncionario, double ngrValorTotal, Set ngrVendaProdutos) {
+    public NgrVendas(int ngrIdVenda, Date ngrDataVenda, int ngrFkCliente, int ngrFkFuncionario, double ngrValorTotal, Set ngrVendaProdutos) {
        this.ngrIdVenda = ngrIdVenda;
        this.ngrDataVenda = ngrDataVenda;
-       this.ngrCliente = ngrFkCliente;
-       this.ngrFuncionario = ngrFkFuncionario;
+       this.ngrFkCliente = ngrFkCliente;
+       this.ngrFkFuncionario = ngrFkFuncionario;
        this.ngrValorTotal = ngrValorTotal;
+       this.ngrVendaProdutos = ngrVendaProdutos;
     }
    
      @Id 
@@ -68,22 +72,22 @@ public class NgrVendas  implements java.io.Serializable {
 
     
     @Column(name="ngr_fk_Cliente")
-    public NgrClientes getNgrCliente() {
-        return this.ngrCliente;
+    public int getNgrFkCliente() {
+        return this.ngrFkCliente;
     }
     
-    public void setNgrCliente(NgrClientes ngrCliente) {
-        this.ngrCliente = ngrCliente;
+    public void setNgrFkCliente(int ngrFkCliente) {
+        this.ngrFkCliente = ngrFkCliente;
     }
 
     
     @Column(name="ngr_fk_Funcionario")
-    public NgrFuncionarios getNgrFuncionario() {
-        return this.ngrFuncionario;
+    public int getNgrFkFuncionario() {
+        return this.ngrFkFuncionario;
     }
     
-    public void setNgrFuncionario(NgrFuncionarios ngrFuncionario) {
-        this.ngrFuncionario = ngrFuncionario;
+    public void setNgrFkFuncionario(int ngrFkFuncionario) {
+        this.ngrFkFuncionario = ngrFkFuncionario;
     }
 
     
@@ -95,6 +99,9 @@ public class NgrVendas  implements java.io.Serializable {
     public void setNgrValorTotal(double ngrValorTotal) {
         this.ngrValorTotal = ngrValorTotal;
     }
+
+
+
 
 
 }

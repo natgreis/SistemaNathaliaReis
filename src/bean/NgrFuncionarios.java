@@ -1,7 +1,8 @@
 package bean;
-// Generated 13/10/2025 15:50:47 by Hibernate Tools 4.3.1
+// Generated 25/11/2025 15:50:25 by Hibernate Tools 4.3.1
 
 
+import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,7 +27,7 @@ public class NgrFuncionarios  implements java.io.Serializable {
      private String ngrCargo;
      private String ngrTelefone;
      private String ngrEmail;
-     private double ngrSalario;
+     private BigDecimal ngrSalario;
      private Date ngrDataAdmissao;
      private String ngrAtivo;
 
@@ -37,7 +38,7 @@ public class NgrFuncionarios  implements java.io.Serializable {
     public NgrFuncionarios(int ngrIdFuncionario) {
         this.ngrIdFuncionario = ngrIdFuncionario;
     }
-    public NgrFuncionarios(int ngrIdFuncionario, String ngrNome, String ngrCpf, String ngrCargo, String ngrTelefone, String ngrEmail, double ngrSalario, Date ngrDataAdmissao, String ngrAtivo) {
+    public NgrFuncionarios(int ngrIdFuncionario, String ngrNome, String ngrCpf, String ngrCargo, String ngrTelefone, String ngrEmail, BigDecimal ngrSalario, Date ngrDataAdmissao, String ngrAtivo) {
        this.ngrIdFuncionario = ngrIdFuncionario;
        this.ngrNome = ngrNome;
        this.ngrCpf = ngrCpf;
@@ -113,11 +114,11 @@ public class NgrFuncionarios  implements java.io.Serializable {
 
     
     @Column(name="ngr_salario", precision=10)
-    public double getNgrSalario() {
+    public BigDecimal getNgrSalario() {
         return this.ngrSalario;
     }
     
-    public void setNgrSalario(double ngrSalario) {
+    public void setNgrSalario(BigDecimal ngrSalario) {
         this.ngrSalario = ngrSalario;
     }
 
@@ -141,21 +142,7 @@ public class NgrFuncionarios  implements java.io.Serializable {
         this.ngrAtivo = ngrAtivo;
     }
 
- @Override
-    public String toString() {
-        return this.ngrIdFuncionario + " - " + this.ngrNome;
-    }
 
-    @Override
-    public boolean equals(Object object) {
-        if (object instanceof NgrFuncionarios) {
-            NgrFuncionarios vendedor = (NgrFuncionarios) object;
-            if (vendedor.getNgrIdFuncionario()== this.getNgrIdFuncionario()) {
-                return true;
-            }
-        }
-        return false;
-    }
 
 
 }

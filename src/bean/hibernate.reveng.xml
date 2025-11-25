@@ -41,10 +41,10 @@ Contributor(s):
 -->
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="db_nathalia_reis"/>
-  <table-filter match-name="ngr_vendas"/>
-  <table-filter match-name="ngr_clientes"/>
-  <table-filter match-name="ngr_produtos"/>
   <table-filter match-name="ngr_funcionarios"/>
+  <table-filter match-name="ngr_clientes"/>
+  <table-filter match-name="ngr_vendas"/>
+  <table-filter match-name="ngr_produtos"/>
   <table-filter match-name="ngr_venda_produto"/>
   <table-filter match-name="ngr_usuarios"/>
 </hibernate-reverse-engineering>

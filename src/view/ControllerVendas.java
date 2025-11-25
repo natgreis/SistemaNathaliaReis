@@ -45,7 +45,7 @@ public class ControllerVendas extends AbstractTableModel {
         } else if (columnIndex ==2) {
             return pedidos.getNgrValorTotal();
         } else if (columnIndex ==3) {
-            return pedidos.getNgrCliente().getNgrNome();
+           // return pedidos.getNgrFkCliente().getNgrNome();
         }
         return ""; 
     }
