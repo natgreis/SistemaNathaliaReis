@@ -97,9 +97,6 @@ public class NgrVendas  implements java.io.Serializable {
     }
 
 
-
-
-
 }
 
 
