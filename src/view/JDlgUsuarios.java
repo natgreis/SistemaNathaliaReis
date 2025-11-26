@@ -6,6 +6,9 @@ package view;
 
 import bean.NgrUsuarios;
 import dao.UsuariosDAO;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import tools.Util;
 
 /**

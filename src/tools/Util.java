@@ -7,6 +7,7 @@ package tools;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
@@ -57,19 +58,18 @@ public class Util {
     public static String doubleToStr (double num){
         return String.valueOf(num);
     }
-    public static Date strToDate (String data){
-       SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        sdf.setLenient(false);
+    public static Date strToDate(String data) {
+        SimpleDateFormat fm = new SimpleDateFormat("dd/MM/YYYY");
         try {
-            return sdf.parse(data);
-        } catch (ParseException e) {
-            return null;
+            return fm.parse(data);
+        } catch (ParseException ex) {
+            java.util.logging.Logger.getLogger(Util.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return null;
     }
-    public static String dateToStr(Date data){
-        if (data == null) return "";
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        return sdf.format(data);
+    public static String dateToStr(Date data) {
+       SimpleDateFormat fm = new SimpleDateFormat("dd/MM/YYYY");
+        return fm.format(data);
     }
     public static boolean validarEmail(String email) {
         if (email == null || email.trim().isEmpty()) {

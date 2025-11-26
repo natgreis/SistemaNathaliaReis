@@ -6,6 +6,9 @@ package view;
 
 import bean.NgrClientes;
 import dao.ClientesDAO;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import tools.Util;
 
 /**
@@ -65,7 +68,7 @@ private boolean incluir = true;
         clientes.setNgrEstado(jCboEstado.getSelectedItem().toString());
         clientes.setNgrCep(jFmtCep.getText());
         clientes.setNgrDataNascimento(Util.strToDate(jFmtDataNascimento.getText()));
-        clientes.setNgrDataCadastro(Util.strToDate(jFmtDataCadastro.getText()));
+    clientes.setNgrDataCadastro(Util.strToDate(jFmtDataCadastro.getText()));
         clientes.setNgrLimiteCredito(Util.strToInt(jTxtCredito.getText()));
         clientes.setNgrObservacoes(jTxtObservacao.getText());
 

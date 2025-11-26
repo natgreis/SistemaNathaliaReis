@@ -12,8 +12,11 @@ import dao.ClientesDAO;
 import dao.VendasDAO;
 import dao.VendaProdutoDAO;
 import dao.FuncionariosDAO;
+import java.text.ParseException;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import tools.Util;
 
 /**
@@ -76,6 +79,19 @@ public class JDlgVendas extends javax.swing.JDialog {
         VendaProdutoDAO vendaProdutoDAO = new VendaProdutoDAO();
         List lista = (List) vendaProdutoDAO.listProdutos(vendas);
         controllerVendProd.setList(lista);
+    }
+    
+    public void atualizarTotal() {
+        double somar = 0.0;
+
+        for (int i = 0; i < jTable.getRowCount(); i++) {
+            Object valorTotal = jTable.getValueAt(i, 4); 
+            if (valorTotal != null) {
+                somar += Util.strToDouble(valorTotal.toString());
+            }
+        }
+
+        jTxtTotal.setText(Util.doubleToStr(somar));
     }
 
     /**
@@ -305,6 +321,7 @@ public class JDlgVendas extends javax.swing.JDialog {
         Util.limpar(jFmtDataVenda, jTxtCodigo, jTxtTotal, jCboCliente, jCboFuncionario);
         controllerVendProd.setList(new ArrayList());
         incluir = true;
+        atualizarTotal();
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
@@ -317,20 +334,20 @@ public class JDlgVendas extends javax.swing.JDialog {
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here:      
         VendasDAO vendasDAO = new VendasDAO();
         VendaProdutoDAO vendaProdutoDAO = new VendaProdutoDAO();
         NgrVendas venda = viewBean();
-
         if (incluir == true) {
             vendasDAO.insert(venda);
             for (int ind = 0; ind < jTable.getRowCount(); ind++) {
-                NgrVendaProduto vendasProdutos = controllerVendProd.getBean(ind);
+                 NgrVendaProduto vendasProdutos = controllerVendProd.getBean(ind);
                 vendasProdutos.setNgrVendas(venda);
                 vendaProdutoDAO.insert(vendasProdutos);
             }
         } else {
             vendasDAO.update(venda);
+
         }
 
         Util.habilitar(false, jFmtDataVenda, jTxtCodigo, jCboCliente, jCboFuncionario, jTxtTotal,
@@ -378,6 +395,7 @@ public class JDlgVendas extends javax.swing.JDialog {
         } else {
             if (Util.pergunta("Deseja excluir o produto?") == true) {
                 controllerVendProd.removeBean(jTable.getSelectedRow());
+                 atualizarTotal();
             }
         }
     }//GEN-LAST:event_jBntExcluirProdActionPerformed
@@ -393,6 +411,7 @@ public class JDlgVendas extends javax.swing.JDialog {
         JDlgVendasProdutos jDlgVendasProdutos = new JDlgVendasProdutos(null, true);
         jDlgVendasProdutos.setTelaPai(this);
         jDlgVendasProdutos.setVisible(true);
+        atualizarTotal();
     }//GEN-LAST:event_jBntIncluirProdActionPerformed
 
     /**
