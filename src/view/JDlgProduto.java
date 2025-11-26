@@ -41,6 +41,7 @@ public class JDlgProduto extends javax.swing.JDialog {
         jTxtPreco.setText(Util.doubleToStr(produtos.getNgrPreco()));
         jFrmtDataCad.setText(Util.dateToStr(produtos.getNgrDataCadastro()));
 
+        
     }
 
     public NgrProdutos viewBean() {
