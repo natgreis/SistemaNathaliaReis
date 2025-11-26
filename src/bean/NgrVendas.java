@@ -10,6 +10,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -27,10 +29,9 @@ public class NgrVendas  implements java.io.Serializable {
 
      private int ngrIdVenda;
      private Date ngrDataVenda;
-     private int ngrFkCliente;
-     private int ngrFkFuncionario;
+     private NgrClientes ngrClientes;
+     private NgrFuncionarios ngrFuncionario;
      private double ngrValorTotal;
-     private Set ngrVendaProdutos = new HashSet(0);
 
     public NgrVendas() {
     }
@@ -39,13 +40,12 @@ public class NgrVendas  implements java.io.Serializable {
     public NgrVendas(int ngrIdVenda) {
         this.ngrIdVenda = ngrIdVenda;
     }
-    public NgrVendas(int ngrIdVenda, Date ngrDataVenda, int ngrFkCliente, int ngrFkFuncionario, double ngrValorTotal, Set ngrVendaProdutos) {
+    public NgrVendas(int ngrIdVenda, Date ngrDataVenda, NgrClientes ngrClientes, NgrFuncionarios ngrFuncionario, double ngrValorTotal, Set ngrVendaProdutos) {
        this.ngrIdVenda = ngrIdVenda;
        this.ngrDataVenda = ngrDataVenda;
-       this.ngrFkCliente = ngrFkCliente;
-       this.ngrFkFuncionario = ngrFkFuncionario;
+       this.ngrClientes = ngrClientes;
+       this.ngrFuncionario = ngrFuncionario;
        this.ngrValorTotal = ngrValorTotal;
-       this.ngrVendaProdutos = ngrVendaProdutos;
     }
    
      @Id 
@@ -59,6 +59,25 @@ public class NgrVendas  implements java.io.Serializable {
     public void setNgrIdVenda(int ngrIdVenda) {
         this.ngrIdVenda = ngrIdVenda;
     }
+    
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="ngr_fk_cliente")
+    public NgrClientes getNgrClientes() {
+        return this.ngrClientes;
+    }
+    
+    public void setNgrClientes(NgrClientes ngrclientes) {
+        this.ngrClientes = ngrclientes;
+    }
+
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="ngr_fk_funcionario")
+    public NgrFuncionarios getNgrFuncionarios() {
+        return this.ngrFuncionario;
+    }
+    public void setNgrFuncionarios(NgrFuncionarios ngrFuncionarios) {
+        this.ngrFuncionario = ngrFuncionarios;
+    }
 
     @Temporal(TemporalType.DATE)
     @Column(name="ngr_dataVenda", length=10)
@@ -68,26 +87,6 @@ public class NgrVendas  implements java.io.Serializable {
     
     public void setNgrDataVenda(Date ngrDataVenda) {
         this.ngrDataVenda = ngrDataVenda;
-    }
-
-    
-    @Column(name="ngr_fk_Cliente")
-    public int getNgrFkCliente() {
-        return this.ngrFkCliente;
-    }
-    
-    public void setNgrFkCliente(int ngrFkCliente) {
-        this.ngrFkCliente = ngrFkCliente;
-    }
-
-    
-    @Column(name="ngr_fk_Funcionario")
-    public int getNgrFkFuncionario() {
-        return this.ngrFkFuncionario;
-    }
-    
-    public void setNgrFkFuncionario(int ngrFkFuncionario) {
-        this.ngrFkFuncionario = ngrFkFuncionario;
     }
 
     

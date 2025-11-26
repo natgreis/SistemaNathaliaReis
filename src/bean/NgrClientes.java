@@ -213,8 +213,21 @@ public class NgrClientes  implements java.io.Serializable {
         this.ngrObservacoes = ngrObservacoes;
     }
 
-
-
+    @Override
+    public String toString() {
+        return this.ngrIdCliente + " - " + this.ngrNome;
+    }
+    
+    @Override
+    public boolean equals(Object object) {
+        if (object instanceof NgrClientes) {
+            NgrClientes clientes = (NgrClientes) object;
+            if (clientes.getNgrIdCliente()== this.getNgrIdCliente()) {
+                return true;
+            }
+        }
+        return false;
+    }
 
 }
 

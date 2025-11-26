@@ -61,8 +61,9 @@ public class JDlgVendas extends javax.swing.JDialog {
         venda.setNgrIdVenda(Util.strToInt(jTxtCodigo.getText()));
         venda.setNgrDataVenda(Util.strToDate(jFmtDataVenda.getText()));
         venda.setNgrValorTotal(Util.strToDouble(jTxtTotal.getText()));
-        venda.setNgrCliente((NgrClientes) jCboCliente.getSelectedItem());
-        venda.setNgrFuncionario((NgrFuncionarios) jCboFuncionario.getSelectedItem());
+        venda.setNgrClientes((NgrClientes) jCboCliente.getSelectedItem());
+        venda.setNgrFuncionarios((NgrFuncionarios) jCboFuncionario.getSelectedItem());
+        
         return venda;
     }
     
@@ -70,8 +71,8 @@ public class JDlgVendas extends javax.swing.JDialog {
         jTxtCodigo.setText(Util.intToStr(vendas.getNgrIdVenda()));
         jFmtDataVenda.setText(Util.dateToStr(vendas.getNgrDataVenda()));
         jTxtTotal.setText(Util.doubleToStr(vendas.getNgrValorTotal()));
-        jCboCliente.setSelectedItem(vendas.getNgrCliente());
-        jCboFuncionario.setSelectedItem(vendas.getNgrFuncionario());
+        jCboCliente.setSelectedItem(vendas.getNgrClientes());
+        jCboFuncionario.setSelectedItem(vendas.getNgrFuncionarios());
         
         VendaProdutoDAO vendaProdutoDAO = new VendaProdutoDAO();
         List lista = (List) vendaProdutoDAO.listProdutos(vendas);
