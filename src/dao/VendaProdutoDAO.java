@@ -44,10 +44,22 @@ public class VendaProdutoDAO extends AbstractDAO{
         session.getTransaction().commit();        
     }
     
-     public Object listProdutos(NgrVendas pedidos) {
+    public void deleteProdutos(NgrVendas vendas) {
+        List lista = (List) listProdutos(vendas);
+        session.beginTransaction();
+        for (int i = 0; i < lista.size(); i++) {
+            NgrVendaProduto pedidosProdutos = (NgrVendaProduto) lista.get(i);
+            session.flush();
+            session.clear();
+            session.delete(pedidosProdutos);
+        }
+        session.getTransaction().commit();
+    }
+    
+     public Object listProdutos(NgrVendas vendas) {
         session.beginTransaction();
         Criteria criteria = session.createCriteria(NgrVendaProduto.class);
-        criteria.add(Restrictions.eq("pedidos", pedidos));
+        criteria.add(Restrictions.eq("ngrVendas", vendas));
         List lista = criteria.list();
         session.getTransaction().commit();        
         return lista;
