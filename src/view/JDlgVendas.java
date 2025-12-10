@@ -17,6 +17,8 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import tools.Util;
 
 /**
@@ -26,7 +28,7 @@ import tools.Util;
 public class JDlgVendas extends javax.swing.JDialog {
 
     ControllerVendaProduto controllerVendProd;
-    private boolean incluir = true;
+    boolean incluir;
 
     /**
      * Creates new form JDlgVendas
@@ -36,13 +38,14 @@ public class JDlgVendas extends javax.swing.JDialog {
         initComponents();
         setTitle("Cadastro de Vendas");
         setLocationRelativeTo(null);
+        
         ClientesDAO clientesDAO = new ClientesDAO();
         List lista = (List) clientesDAO.listAll();
         for (int i = 0; i < lista.size(); i++) {
             jCboCliente.addItem((NgrClientes) lista.get(i));
         }
-
-        FuncionariosDAO funcionariosDAO = new FuncionariosDAO();
+        
+         FuncionariosDAO funcionariosDAO = new FuncionariosDAO();
         List listaFuncionarios = (List) funcionariosDAO.listAll();
         for (Object object : listaFuncionarios) {
             jCboFuncionario.addItem((NgrFuncionarios) object);
@@ -50,12 +53,17 @@ public class JDlgVendas extends javax.swing.JDialog {
         controllerVendProd = new ControllerVendaProduto();
         controllerVendProd.setList(new ArrayList());
         jTable.setModel(controllerVendProd);
-
-        Util.limpar(jFmtDataVenda, jTxtCodigo, jCboCliente, jCboFuncionario, jTxtTotal);
-        Util.habilitar(false, jFmtDataVenda, jTxtCodigo, jCboCliente, jCboFuncionario, jTxtTotal,
-                jBtnConfirmar, jBtnCancelar);
-
+        
+       Util.habilitar(false, jTxtCodigo, jFmtDataVenda, jCboCliente,
+                jCboFuncionario, jTxtTotal,
+                jBtnConfirmar, jBtnCancelar,
+                jBntIncluirProd, jBntAlterarProd, jBntExcluirProd);
+        Util.habilitar(true, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
     }
+    
+    public JTable getjTable() {
+        return jTable;
+    }  
 
     public NgrVendas viewBean() {
         NgrVendas venda = new NgrVendas();
@@ -347,9 +355,13 @@ public class JDlgVendas extends javax.swing.JDialog {
             }
         } else {
             vendasDAO.update(venda);
-
+            vendaProdutoDAO.deleteProdutos(venda);
+            for (int ind = 0; ind < jTable.getRowCount(); ind++) {
+                NgrVendaProduto ngrVendaProduto = controllerVendProd.getBean(ind);
+                ngrVendaProduto.setNgrVendas(venda);
+                vendaProdutoDAO.insert(ngrVendaProduto);
+            }
         }
-
         Util.habilitar(false, jFmtDataVenda, jTxtCodigo, jCboCliente, jCboFuncionario, jTxtTotal,
                 jBtnConfirmar, jBtnCancelar);
         Util.habilitar(true, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
@@ -403,13 +415,15 @@ public class JDlgVendas extends javax.swing.JDialog {
     private void jBntAlterarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntAlterarProdActionPerformed
         // TODO add your handling code here:
         JDlgVendasProdutos jDlgVendasProdutos = new JDlgVendasProdutos(null, true);
+        NgrVendaProduto vendasProdutos = controllerVendProd.getBean(jTable.getSelectedRow());
+        jDlgVendasProdutos.setTelaPai(this, vendasProdutos);
         jDlgVendasProdutos.setVisible(true);
     }//GEN-LAST:event_jBntAlterarProdActionPerformed
 
     private void jBntIncluirProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBntIncluirProdActionPerformed
         // TODO add your handling code here:
         JDlgVendasProdutos jDlgVendasProdutos = new JDlgVendasProdutos(null, true);
-        jDlgVendasProdutos.setTelaPai(this);
+        jDlgVendasProdutos.setTelaPai(this, null);
         jDlgVendasProdutos.setVisible(true);
         atualizarTotal();
     }//GEN-LAST:event_jBntIncluirProdActionPerformed

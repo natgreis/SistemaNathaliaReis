@@ -17,7 +17,9 @@ import tools.Util;
  */
 public class JDlgVendasProdutos extends javax.swing.JDialog {
 
-    JDlgVendas jDlgVendas;
+    JDlgVendas jDlgVendas;     
+    boolean incluir;
+
 
     /**
      * Creates new form JDlgPedidosProdutos
@@ -38,8 +40,15 @@ public class JDlgVendasProdutos extends javax.swing.JDialog {
     }
 
     
-      public void setTelaPai(JDlgVendas jDlgVendas) {
+      public void setTelaPai(JDlgVendas jDlgVendas, NgrVendaProduto vendaProduto) {
         this.jDlgVendas = jDlgVendas;
+        if (vendaProduto != null) {
+            incluir = false;
+            jCboProdutos.setSelectedItem(vendaProduto.getNgrProdutos());
+            jTxtQuantidade.setText(Util.intToStr(vendaProduto.getNgrQuantidade()));        
+        } else {
+            incluir = true;
+        }
     }
 
     /**
