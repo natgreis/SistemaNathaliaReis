@@ -6,9 +6,6 @@ package view;
 
 import bean.NgrFuncionarios;
 import dao.FuncionariosDAO;
-import java.text.ParseException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import tools.Util;
 
 /**
@@ -298,7 +295,7 @@ private boolean incluir = true;
     if (!Util.validarEmail(email)) {
         Util.mensagem("Email invalido");
         jTxtEmail.requestFocus();
-        return; // Interrompe o fluxo se for inválido
+        return; 
     }
 
     FuncionariosDAO funcionariosDAO = new FuncionariosDAO();

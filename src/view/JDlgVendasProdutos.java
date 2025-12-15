@@ -183,7 +183,14 @@ public class JDlgVendasProdutos extends javax.swing.JDialog {
         vendasProdutos.setNgrProdutos((NgrProdutos) jCboProdutos.getSelectedItem());
         vendasProdutos.setNgrQuantidade(Util.strToInt(jTxtQuantidade.getText()));
         vendasProdutos.setNgrPrecoUnitario(Util.strToDouble(jTxtValorUni.getText()));
-        jDlgVendas.controllerVendProd.addBean(vendasProdutos);
+       
+        if (incluir ==true){
+            jDlgVendas.controllerVendProd.addBean(vendasProdutos);
+        } else {
+            jDlgVendas.controllerVendProd.removeBean(jDlgVendas.getjTable().getSelectedRow());
+            jDlgVendas.controllerVendProd.addBean(vendasProdutos);
+        }
+        
         setVisible(false);
     }//GEN-LAST:event_jBtnOkActionPerformed
 

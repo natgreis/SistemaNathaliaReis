@@ -69,7 +69,7 @@ public class VendaProdutoDAO extends AbstractDAO{
     public Object list(int codigo) {
         session.beginTransaction();
         Criteria criteria = session.createCriteria(NgrVendaProduto.class);
-        criteria.add(Restrictions.eq("ngrIdVendaProduto", codigo));
+        criteria.add(Restrictions.eq("", codigo));
         List lista = criteria.list();
         session.getTransaction().commit();        
         return lista;

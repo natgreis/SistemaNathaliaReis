@@ -5,6 +5,8 @@ package bean;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -41,7 +43,7 @@ public class NgrVendaProduto  implements java.io.Serializable {
        this.ngrQuantidade = ngrQuantidade;
     }
    
-     @Id 
+     @Id @GeneratedValue(strategy=IDENTITY)
 
     
     @Column(name="ngr_idVendaProduto", unique=true, nullable=false)
@@ -53,7 +55,7 @@ public class NgrVendaProduto  implements java.io.Serializable {
         this.ngrIdVendaProduto = ngrIdVendaProduto;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+@ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="ngr_fk_idProduto")
     public NgrProdutos getNgrProdutos() {
         return this.ngrProdutos;
@@ -63,7 +65,7 @@ public class NgrVendaProduto  implements java.io.Serializable {
         this.ngrProdutos = ngrProdutos;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+@ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="ngr_fk_idVenda")
     public NgrVendas getNgrVendas() {
         return this.ngrVendas;
