@@ -52,6 +52,32 @@ public class FuncionariosDAO extends AbstractDAO{
         session.getTransaction().commit();        
         return lista;
     }
+    public Object listNome(String nome) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(NgrFuncionarios.class);
+        criteria.add(Restrictions.like("ngrNome", "%"+nome+"%"));
+        List lista = criteria.list();
+        session.getTransaction().commit();        
+        return lista;
+    } 
+    
+    public Object listCpf(String cpf) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(NgrFuncionarios.class);
+        criteria.add(Restrictions.like("ngrCpf", "%"+cpf+"%"));
+        List lista = criteria.list();
+        session.getTransaction().commit();        
+        return lista;
+    }
+  public Object listNomeCpf(String nome, String cpf) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(NgrFuncionarios.class);
+        criteria.add(Restrictions.like("ngrNome", "%"+nome+"%"));
+        criteria.add(Restrictions.like("ngrCpf", "%"+cpf+"%"));
+        List lista = criteria.list();
+        session.getTransaction().commit();        
+        return lista;
+  }
 
     @Override
     public Object listAll() {

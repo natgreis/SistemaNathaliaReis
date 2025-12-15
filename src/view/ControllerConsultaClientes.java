@@ -6,16 +6,16 @@ import javax.swing.table.AbstractTableModel;
 
 public class ControllerConsultaClientes extends AbstractTableModel {
 
-    private List lstProdutos;
+    private List lstClientes;
 
-    public void setList(List lstProdutos) {
-        this.lstProdutos = lstProdutos;
+    public void setList(List lstClientes) {
+        this.lstClientes = lstClientes;
         this.fireTableDataChanged();
     }
     
     @Override
     public int getRowCount() {
-        return lstProdutos.size();
+        return lstClientes.size();
     }
 
     @Override
@@ -25,13 +25,13 @@ public class ControllerConsultaClientes extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-         NgrClientes produtos = (NgrClientes) lstProdutos.get( rowIndex);
+         NgrClientes c = (NgrClientes) lstClientes.get( rowIndex);
         if ( columnIndex == 0 ){
-            return produtos.getNgrIdCliente();
+            return c.getNgrIdCliente();
         } else if (columnIndex ==1) {
-            return produtos.getNgrNome();        
+            return c.getNgrNome();        
         } else if (columnIndex ==2) {
-            return produtos.getNgrCpf();
+            return c.getNgrCpf();
         } 
         return "";
     }
