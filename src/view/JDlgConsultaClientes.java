@@ -4,10 +4,13 @@
  */
 package view;
 
+import bean.NgrUsuarios;
 import dao.ClientesDAO;
+import dao.UsuariosDAO;
 import java.util.ArrayList;
 import java.util.List;
 import tools.Util;
+import view.JDlgUsuarios;
 
 /**
  *
@@ -21,8 +24,9 @@ public class JDlgConsultaClientes extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
-        setTitle("Consultar Clientes");
+        setTitle("Pesquisar Clientes");
         controllerConsultaClientes = new ControllerConsultaClientes();
+        ClientesDAO clientesDAO = new ClientesDAO();
         List lista = new ArrayList();
         controllerConsultaClientes.setList(lista);
         jTable1.setModel(controllerConsultaClientes);

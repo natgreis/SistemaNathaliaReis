@@ -4,11 +4,13 @@
  */
 package view;
 
+import bean.NgrUsuarios;
 import dao.FuncionariosDAO;
+import dao.UsuariosDAO;
 import java.util.ArrayList;
 import java.util.List;
 import tools.Util;
-
+import view.JDlgUsuarios;
 
 /**
  *
@@ -22,8 +24,9 @@ public class JDlgConsultaFuncionario extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
-        setTitle("Consultar Funcionario");
+        setTitle("Pesquisar Funcionario");
         controllerConsultaFuncionario = new ControllerConsultaFuncionario();
+        FuncionariosDAO clientesDAO = new FuncionariosDAO();
         List lista = new ArrayList();
         controllerConsultaFuncionario.setList(lista);
         jTable1.setModel(controllerConsultaFuncionario);
